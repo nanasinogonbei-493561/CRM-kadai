@@ -59,7 +59,7 @@ test('company factory creates valid data', function () {
     expect($company->email)->toMatch('/^[^@\s]+@[^@\s]+\.[^@\s]+$/');
     expect($company->industry)->toBeIn([
         'Technology',
-        'Healthcare', 
+        'Healthcare',
         'Finance',
         'Education',
         'Manufacturing',
