@@ -1,7 +1,7 @@
 <x-layouts.app :title="__('Dashboard')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
       <h2>会社編集フォーム</h2>
-      <form method="POST" action="{{ route('companies.update', $company->id) }}" class="flex flex" >
+      <form method="POST" action="{{ route('companies.update', $company->id) }}" class="" >
         @csrf
         <div class="mb-4">
           <label for="name" class="block text-gray-700 text-sm font-bold mb-2">会社名:</label>
@@ -25,6 +25,13 @@
         </div>
         <div class="mb-4">
           <label for="description" class="block text-gray-700 text-sm font-bold mb-2">説明:</label>
-          <textarea name="description" id="description" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3
+          <textarea name="description" id="description" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3</textarea>
+          </div>
+        <div class="flex items-center justify-between">
+          <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+            作成
+          </button>
+
+          <a href="{{ route('companies.index') }}" class="text-blue-500 hover:underline">キャンセル</a>
     </div>
 </x-layouts.app>
