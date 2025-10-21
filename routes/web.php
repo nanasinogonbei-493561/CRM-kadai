@@ -26,6 +26,10 @@ Route::middleware(['auth'])->group(function (){
     Route::get('dashboard/contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name('contacts.index');
     Route::get('dashboard/contacts/create', [\App\Http\Controllers\ContactController::class, 'create'])->name('contacts.create');
     Route::post('dashboard/contacts', [\App\Http\Controllers\ContactController::class, 'store'])->name('contacts.store');
+    Route::get('dashboard/contacts/{id}', [\App\Http\Controllers\ContactController::class, 'show'])->name('contacts.show');
+    Route::get('dashboard/contacts/{id}/edit', [\App\Http\Controllers\ContactController::class, 'edit'])->name('contacts.edit');
+    Route::put('dashboard/contacts/{id}', [\App\Http\Controllers\ContactController::class, 'update'])->name('contacts.update');
+    Route::delete('dashboard/contacts/{id}', [\App\Http\Controllers\ContactController::class, 'destroy'])->name('contacts.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {

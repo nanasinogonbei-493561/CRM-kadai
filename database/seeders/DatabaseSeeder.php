@@ -23,6 +23,14 @@ class DatabaseSeeder extends Seeder
             'name' => 'Test Company2',
         ]);
 
+        Contact::create([
+            'first_name' => '鈴木',
+        ]);
+
+        Contact::create([
+            'lsst_name' => '次郎',
+        ]);
+
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',

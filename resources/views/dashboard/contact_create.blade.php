@@ -4,28 +4,31 @@
       <form method="POST" action="{{ route('contacts.store') }}" class="" >
         @csrf
         <div class="mb-4">
-          <label for="name" class="block text-gray-700 text-sm font-bold mb-2">会社名:</label>
-          <input type="text" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+          <label for="first_name" class="block text-white-700 text-sm font-bold mb-2">苗字:</label>
+          <input type="text" name="first_name" id="first_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
         <div class="mb-4">
-          <label for="address" class="block text-gray-700 text-sm font-bold mb-2">住所:</label>
-          <input type="text" name="address" id="address" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+          <label for="last_name" class="block text-white-700 text-sm font-bold mb-2">名前:</label>
+          <input type="text" name="last_name" id="last_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
         <div class="mb-4">
-          <label for="phone" class="block text-gray-700 text-sm font-bold mb-2">電話番号:</label>
-          <input type="text" name="phone" id="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+          <label for="position" class="block text-white-700 text-sm font-bold mb-2">役職:</label>
+          <input type="text" name="position" id="position" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
         <div class="mb-4">
-          <label for="email" class="block text-gray-700 text-sm font-bold mb-2">メールアドレス:</label>
-          <input type="email" name="email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" required>
+          <label for="email" class="block text-white-700 text-sm font-bold mb-2">メールアドレス:</label>
+          <input type="email" name="email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
         <div class="mb-4">
-          <label for="website" class="block text-gray-700 text-sm font-bold mb-2">ウェブサイト:</label>
-          <input type="url" name="website" id="website" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label for="phone" class="block text-white-700 text-sm font-bold mb-2">電話番号:</label>
+          <input type="text" name="phone" id="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div><div class="mb-4">
+          <label for="mobile" class="block text-white-700 text-sm font-bold mb-2">携帯電話番号:</label>
+          <input type="text" name="mobile" id="mobile" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
         <div class="mb-4">
-          <label for="description" class="block text-gray-700 text-sm font-bold mb-2">説明:</label>
-          <textarea name="description" id="description" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3"></textarea>
+          <label for="notes" class="block text-white-700 text-sm font-bold mb-2">メモ:</label>
+          <textarea name="notes" id="notes" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3"></textarea>
           </div>
         <div class="flex items-center justify-between">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
@@ -34,4 +37,5 @@
 
           <a href="{{ route('contacts.index') }}" class="text-blue-500 hover:underline">キャンセル</a>
         </div>
+
 </x-layouts.app>

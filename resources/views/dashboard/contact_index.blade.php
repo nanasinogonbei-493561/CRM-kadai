@@ -7,7 +7,9 @@
           <thead>
             <tr>
               <th class="px-4 py-2">ID</th>
-              <th class="px-4 py-2">会社名</th>
+              <th class="px-4 py-2">苗字</th>
+              <th class="px-4 py-2">名前</th>
+              <th class="px-4 py-2">役職</th>
               <th class="px-4 py-2">詳細</th>
               <th class="px-4 py-2">編集</th>
               <th class="px-4 py-2">削除</th>
