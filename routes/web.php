@@ -22,6 +22,12 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('dashboard/companies/{id}', [\App\Http\Controllers\CompanyController::class, 'destroy'])->name('companies.destroy');
 });
 
+Route::middleware(['auth'])->group(function (){
+    Route::get('dashboard/contacts', [\App\Http\Controllers\ContactController::class, 'index'])->name('contacts.index');
+    Route::get('dashboard/contacts/create', [\App\Http\Controllers\ContactController::class, 'create'])->name('contacts.create');
+    Route::post('dashboard/contacts', [\App\Http\Controllers\ContactController::class, 'store'])->name('contacts.store');
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 
