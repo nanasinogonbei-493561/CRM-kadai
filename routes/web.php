@@ -20,6 +20,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard/companies/{id}/edit', [\App\Http\Controllers\CompanyController::class, 'edit'])->name('companies.edit');
     Route::put('dashboard/companies/{id}', [\App\Http\Controllers\CompanyController::class, 'update'])->name('companies.update');
     Route::delete('dashboard/companies/{id}', [\App\Http\Controllers\CompanyController::class, 'destroy'])->name('companies.destroy');
+
 });
 
 Route::middleware(['auth'])->group(function (){
@@ -31,6 +32,9 @@ Route::middleware(['auth'])->group(function (){
     Route::put('dashboard/contacts/{id}', [\App\Http\Controllers\ContactController::class, 'update'])->name('contacts.update');
     Route::delete('dashboard/contacts/{id}', [\App\Http\Controllers\ContactController::class, 'destroy'])->name('contacts.destroy');
 });
+
+Route::get('/', 'HomeController@index')->name('companies.index'); /* 一覧表示 */
+Route::get('/', 'HomeController@index')->name('contacts.index');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
