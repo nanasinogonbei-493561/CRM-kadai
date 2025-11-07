@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
+use App\Http\Controllers\HomeController;
+
+Route::get('/home', [HomeController::class, 'index']);
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -32,9 +36,6 @@ Route::middleware(['auth'])->group(function (){
     Route::put('dashboard/contacts/{id}', [\App\Http\Controllers\ContactController::class, 'update'])->name('contacts.update');
     Route::delete('dashboard/contacts/{id}', [\App\Http\Controllers\ContactController::class, 'destroy'])->name('contacts.destroy');
 });
-
-Route::get('/', 'HomeController@index')->name('companies.index'); /* 一覧表示 */
-Route::get('/', 'HomeController@index')->name('contacts.index');
 
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
