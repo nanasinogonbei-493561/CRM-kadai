@@ -46,8 +46,8 @@ class ContactController extends Controller
     public function update(Request $request, $id){
         //バリデーション
         $validated = $request->validate([
-            'company_id' => 'required|string',
-            'user_id' => 'required|string',
+            // 'company_id' => 'required|string',
+            // 'user_id' => 'required|string',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',

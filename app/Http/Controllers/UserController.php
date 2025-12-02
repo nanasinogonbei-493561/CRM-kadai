@@ -18,6 +18,7 @@ class UserController extends Controller
     public function index()
     {
         Log::debug('message');
-        return view('home');
+        $message = $request->input('message.json');
+        return view('json');
     }
 }

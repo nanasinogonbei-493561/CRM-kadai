@@ -2,7 +2,7 @@
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
 
         <div>
-            <form action="/search" method="GET">
+            <form action="{{ route('search') }}" method="GET">
 
                 @csrf
 

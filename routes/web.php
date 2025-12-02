@@ -2,14 +2,19 @@
 
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
-use App\Http\Controllers\HomeController;
+use App\Http\Controllers\SearchController;
+use App\Enums\Category;
 
-Route::get('/home', [HomeController::class, 'index']);
+Route::get('/search', [SearchController::class, 'search'])->name('search');
 
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
+
+// Route::get('/', function () {
+//     return view('search');
+// });
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])
@@ -45,6 +50,8 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
 
-
+Route::get('/categories/{category}', function (Category $category) {
+    return $category->value;
+});
 
 require __DIR__.'/auth.php';
