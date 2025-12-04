@@ -1,8 +1,22 @@
 <x-layouts.app :title="__('Dashboard')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
       <h2>連絡先作成フォーム</h2>
+      @if ($errors->any())
+      @foreach ($errors->all() as $error)
+        <div>{{ $error }}</div>
+      @endforeach
+      @endif
       <form method="POST" action="{{ route('contacts.store') }}" class="" >
         @csrf
+        <div class="mb-4">
+          <label for="company_id" class="block text-white-700 text-sm font-bold mb-2">会社:</label>
+          <select name="company_id" id="company_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <option value="">会社を選択してください</option>
+            @foreach($companies as $company)
+              <option value="{{ $company->id }}">{{ $company->name }}</option>
+            @endforeach
+          </select>
+        </div>
         <div class="mb-4">
           <label for="first_name" class="block text-white-700 text-sm font-bold mb-2">苗字:</label>
           <input type="text" name="first_name" id="first_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>

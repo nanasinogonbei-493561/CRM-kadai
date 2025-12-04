@@ -14,15 +14,18 @@ class ContactController extends Controller
     }
 
     public function create(){
-        return view('dashboard.contact_create');
+        //会社情報 ログインしてるuser_idのものだけ取得するように修正必要
+        $companies = \App\Models\Company::all();
+        return view('dashboard.contact_create', compact('companies'));
     }
 
 
-    public function store(Request $request){
+    public function store(Request $ggg){
+
+
         //バリデーション
-        $validated = $request->validate([
-            'company_id' => 'required|string',
-            'user_id' => 'required|string',
+        $validated = $ggg->validate([
+            'company_id' => 'required|string' ,
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
@@ -30,7 +33,19 @@ class ContactController extends Controller
             'phone' => 'nullable|string|max:20',
             'mobile' => 'nullable|string|max:20',
             'notes' => 'nullable|string',
-        ]);
+        ],[
+    'company_id.required' => '会社IDは必須です。',
+]);
+
+        //ログインしているユーザーのIDを追加
+
+        $validated['user_id'] = auth()->id();
+
+
+        dd($validated);
+        //連絡先を作成
+        \App\Models\Contact::create($validated);
+        return redirect()->route('contacts.index')->with('success', 'Contact created successfull
     }
 
     public function show($id){
