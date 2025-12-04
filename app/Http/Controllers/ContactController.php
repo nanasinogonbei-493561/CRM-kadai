@@ -14,18 +14,16 @@ class ContactController extends Controller
     }
 
     public function create(){
-        return view('dashboard.contact_create');
+        //会社情報 ログインしてるuser_idのものだけ取得するように修正必要
+        $companies = \App\Models\Company::all();
+        return view('dashboard.contact_create', compact('companies'));
     }
 
 
     public function store(Request $request){
-        //会社情報 ログインしてるuser_idのものだけ取得するように修正必要
-        $companies = \App\Models\Company::all();
-        return view('dashboard.contact_create', compact('companies'));
         //バリデーション
         $validated = $request->validate([
             'company_id' => 'required|string',
-            'user_id' => 'required|string',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
             'email' => 'nullable|email|max:255',
@@ -42,7 +40,7 @@ class ContactController extends Controller
         $validated['user_id'] = auth()->id();
 
 
-        dd($validated);
+        // dd($validated);
         //連絡先を作成
         \App\Models\Contact::create($validated);
         return redirect()->route('contacts.index')->with('success', 'Contact created successfull');
