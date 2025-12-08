@@ -18,8 +18,9 @@
           <tbody>
             @foreach($contacts as $hensu)
               <tr>
-                <td class="border px-4 py-2">{{ $hensu->id }}</td>
-                <td class="border px-4 py-2">{{ $hensu->name }}</td>
+                <td class="border px-4 py-2">{{ $hensu->first_name }}</td>
+                <td class="border px-4 py-2">{{ $hensu->last_name }}</td>
+                <td class="border px-4 py-2">{{ $hensu->position }}</td>
                 <td class="border px-4 py-2">
                   <a href="{{ route('contacts.show', $hensu->id) }}" class="text-blue-500 hover:underline">詳細</a>
                 </td>
