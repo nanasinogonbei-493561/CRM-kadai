@@ -56,7 +56,6 @@ return [
         // stackをjsonように
         'stack' => [
             'driver' => 'stack',
-            'name' => 'CRMlog',
             'channels' => ['single_json'], // [tl! add]
             'ignore_exceptions' => false,
         ],
