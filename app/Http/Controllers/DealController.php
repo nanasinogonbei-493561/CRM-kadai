@@ -53,7 +53,7 @@ class DealController extends Controller
 
             //商談を作成
             \App\Models\deal::create($validated);
-            return redirect()->route('deals.index')->with('success', 'Deal created successfull');
+            return redirect()->route('deal.index')->with('success', 'Deal created successfull');
     }
 
     /**
@@ -98,7 +98,7 @@ class DealController extends Controller
         $deal = \App\Models\Deal::findOrFail($id);
         $deal->update($validated);
 
-        return redirect()->route('deals.index')->with('success', 'Deal updated successfully.');
+        return redirect()->route('deal.index')->with('success', 'Deal updated successfully.');
     }
 
     /**
@@ -110,6 +110,6 @@ class DealController extends Controller
         $deal = \App\Models\Contact::findOrFail($id);
         $deal->delete();
 
-        return redirect()->route('deals.index')->with('success', 'Deal deleted successfully.');
+        return redirect()->route('deal.index')->with('success', 'Deal deleted successfully.');
     }
 }

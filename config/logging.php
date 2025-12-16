@@ -4,6 +4,7 @@ use Monolog\Handler\NullHandler;
 use Monolog\Handler\StreamHandler;
 use Monolog\Handler\SyslogUdpHandler;
 use Monolog\Processor\PsrLogMessageProcessor;
+use Monolog\Formatter\JsonFormatter;
 
 return [
 
@@ -52,9 +53,11 @@ return [
 
     'channels' => [
 
+        // stackをjsonように
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['syslog', 'slack'], // [tl! add]
+            'name' => 'CRMlog',
+            'channels' => ['single_json'], // [tl! add]
             'ignore_exceptions' => false,
         ],
 
@@ -64,6 +67,20 @@ return [
             'level' => env('LOG_LEVEL', 'debug'),
             'replace_placeholders' => true,
         ],
+
+        'single_json' => [
+            'driver' => 'single',
+            'path' => storage_path('logs/laravel.json'),
+            'level' => env('LOG_LEVEL', 'debug'),
+            'replace_placeholders' => true,
+            'formatter' => JsonFormatter::class,
+            'formatter_with' => [
+                // Monolog\JsonFormatter options (必要なら):
+                // 'batchMode' => JsonFormatter::BATCH_MODE_JSON,
+                // 'appendNewline' => true,
+            ],
+        ],
+
 
         'daily' => [
             'driver' => 'daily',

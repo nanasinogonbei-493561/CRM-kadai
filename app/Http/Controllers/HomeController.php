@@ -15,6 +15,11 @@ class HomeController extends Controller
         $contacts = DB::table('contacts')
             ->whereLike('name' , '%%')
             ->get();
+
+        $deals = DB::table('deals')
+            ->whereLike('name' , '%%')
+            ->get();
+
         return view('dashboard');
     }
 }

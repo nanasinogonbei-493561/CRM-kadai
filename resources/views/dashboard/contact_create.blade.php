@@ -18,8 +18,6 @@
           </select>
         </div>
         
-      <form method="POST" action="{{ route('contacts.store') }}" class="" >
-        @csrf
         <div class="mb-4">
           <label for="first_name" class="block text-white-700 text-sm font-bold mb-2">苗字:</label>
           <input type="text" name="first_name" id="first_name" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>

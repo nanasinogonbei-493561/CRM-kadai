@@ -17,9 +17,9 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->integer('amount');
-            $table->string('status')->nullable;
+            $table->string('status')->nullable();
             $table->date('date')->nullable;
-            $table->percentage('probability')->nullable;
+            $table->percentage('integer')->nullable;
             $table->string('description')->nullable;
             $table->string('notes')->nullable;
             $table->timestamps();

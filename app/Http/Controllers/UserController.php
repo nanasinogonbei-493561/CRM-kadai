@@ -17,6 +17,7 @@ class UserController extends Controller
 {
     public function index()
     {
+        Log::error($message);
         Log::debug('message');
         return view('home');
     }

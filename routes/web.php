@@ -37,6 +37,16 @@ Route::middleware(['auth'])->group(function (){
     Route::delete('dashboard/contacts/{id}', [\App\Http\Controllers\ContactController::class, 'destroy'])->name('contacts.destroy');
 });
 
+Route::middleware(['auth'])->group(function (){
+    Route::get('dashboard/deals', [\App\Http\Controllers\DealController::class, 'index'])->name('deals.index');
+    Route::get('dashboard/deals/create', [\App\Http\Controllers\DealController::class, 'create'])->name('deals.create');
+    Route::post('dashboard/deals', [\App\Http\Controllers\DealController::class, 'store'])->name('deals.store');
+    Route::get('dashboard/deals/{id}', [\App\Http\Controllers\DealController::class, 'show'])->name('deals.show');
+    Route::get('dashboard/deals/{id}/edit', [\App\Http\Controllers\DealController::class, 'edit'])->name('deals.edit');
+    Route::put('dashboard/deals/{id}', [\App\Http\Controllers\DealController::class, 'update'])->name('deals.update');
+    Route::delete('dashboard/deals/{id}', [\App\Http\Controllers\DealController::class, 'destroy'])->name('deals.destroy');
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 

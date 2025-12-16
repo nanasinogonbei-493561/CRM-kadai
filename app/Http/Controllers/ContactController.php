@@ -52,14 +52,15 @@ class ContactController extends Controller
     }
 
     public function edit($id){
+        $companies = \App\Models\Company::all();
         $contact = \App\Models\Contact::findOrFail($id);
-        return view('dashboard.contact_edit', compact('contact'));
+        return view('dashboard.contact_edit', compact('contact', 'companies'));
     }
 
     public function update(Request $request, $id){
         //バリデーション
         $validated = $request->validate([
-            // 'company_id' => 'required|string',
+            'company_id' => 'required|string',
             // 'user_id' => 'required|string',
             'first_name' => 'required|string|max:255',
             'last_name' => 'required|string|max:255',
