@@ -26,7 +26,7 @@ class DealController extends Controller
     {
         //会社情報 ログインしてるuser_idのものだけ取得するように修正必要
         $companies = \App\Models\Company::all();
-        return view('dashboard.contact_create', compact('companies'));
+        return view('dashboard.deal_create', compact('companies'));
     }
 
     /**

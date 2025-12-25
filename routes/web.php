@@ -3,8 +3,10 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ApiContactController;
 
 Route::get('/home', [HomeController::class, 'index']);
+
 
 
 Route::get('/', function () {
@@ -54,6 +56,8 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/password', 'settings.password')->name('settings.password');
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
+
+Route::get('/api/contacts/{companyId}', [\App\Http\Controllers\ApiContactController::class, 'getConctactsByCompnay']);
 
 
 
