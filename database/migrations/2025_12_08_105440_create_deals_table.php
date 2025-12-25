@@ -18,10 +18,10 @@ return new class extends Migration
             $table->string('title');
             $table->integer('amount');
             $table->string('status')->nullable();
-            $table->date('date')->nullable;
-            $table->percentage('integer')->nullable;
-            $table->string('description')->nullable;
-            $table->string('notes')->nullable;
+            $table->date('date')->nullable();
+            $table->integer('probability')->nullable();
+            $table->string('description')->nullable();
+            $table->string('notes')->nullable();
             $table->timestamps();
         });
     }
