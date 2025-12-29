@@ -26,7 +26,7 @@ class DealController extends Controller
     {
         //会社情報 ログインしてるuser_idのものだけ取得するように修正必要
         $companies = \App\Models\Company::all();
-        return view('dashboard.contact_create', compact('companies'));
+        return view('dashboard.deal_create', compact('companies'));
     }
 
     /**
@@ -52,7 +52,7 @@ class DealController extends Controller
             $validated['user_id'] = auth()->id();
 
             //商談を作成
-            \App\Models\deal::create($validated);
+            \App\Models\Deal::create($validated);
             return redirect()->route('deal.index')->with('success', 'Deal created successfull');
     }
 
@@ -107,7 +107,7 @@ class DealController extends Controller
     public function destroy($id)
     {
         //
-        $deal = \App\Models\Contact::findOrFail($id);
+        $deal = \App\Models\Deal::findOrFail($id);
         $deal->delete();
 
         return redirect()->route('deal.index')->with('success', 'Deal deleted successfully.');

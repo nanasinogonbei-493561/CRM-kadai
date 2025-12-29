@@ -55,6 +55,6 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
 
-
+Route::get('/api/contacts/{companyId}', [\App\Http\Controllers\ApiContactController::class, 'getConctactsByCompany']);
 
 require __DIR__.'/auth.php';

@@ -17,6 +17,7 @@
                     <flux:navlist.item icon="home" :href="route('dashboard')" :current="request()->routeIs('dashboard')" wire:navigate>{{ __('Dashboard') }}</flux:navlist.item>
                     <flux:navlist.item icon="home" :href="route('companies.index')" :current="request()->routeIs('dashboard')" wire:navigate>会社一覧</flux:navlist.item>
                     <flux:navlist.item icon="home" :href="route('contacts.index')" :current="request()->routeIs('dashboard')" wire:navigate>連絡先一覧</flux:navlist.item>
+                    <flux:navlist.item icon="home" :href="route('deals.index')" :current="request()->routeIs('dashboard')" wire:navigate>商談一覧</flux:navlist.item>
                 </flux:navlist.group>
             </flux:navlist>
 

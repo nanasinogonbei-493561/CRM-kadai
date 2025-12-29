@@ -6,6 +6,44 @@
         <div>{{ $error }}</div>
       @endforeach
       @endif
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          const companySelect = document.getElementById('company_id');
+          const contactSelect = document.getElementById('contact_id');
+
+          companySelect.addEventListener('change', function() {
+            console.log('会社選択が変更されました。');
+            const companyId = this.value;
+            console.log('選択された会社ID:', companyId);
+
+            // 連絡先ドロップダウンをクリア
+            contactSelect.innerHTML = '<option value="">連絡先を選択してください</option>';
+            if (companyId) {
+              // 会社IDに基づいて連絡先を取得するAPIエンドポイントにリクエストを送信
+              fetch(`/api/contacts/${companyId}`)
+               .then(response => response.json())
+               .then(data => {
+                console.log('取得した連絡先データ:', data);
+                data.foreach(contact => {
+                 console.log('連絡先:', contact);
+                 const option = document.createElement('option');
+                 option.value = contact.id;
+                 option.textContent = `${contact.first_name} ${contact.last_name}`;
+
+                 contactSelect.appendChild(option);
+                });
+               })
+               .catch(error => {
+                console.error('連絡先の取得中にエラーが発生しました:', error);
+               });
+            }
+            
+            
+          });
+        });
+      </script>
+
       <form method="POST" action="{{ route('deals.store') }}" class="" >
         @csrf
         <div class="mb-4">
@@ -23,48 +61,25 @@
         <div>{{ $error }}</div>
       @endforeach
       @endif
-      <form method="POST" action="{{ route('deals.store') }}" class="" >
-        @csrf
+      
         <div class="mb-4">
           <label for="contact_id" class="block text-white-700 text-sm font-bold mb-2">連絡先:</label>
           <select name="contact_id" id="contact_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
-            <option value="">連絡先を選択してください</option>
-            @foreach($contacts as $contact)
-              <option value="{{ $contact->id }}">{{ $contact->name }}</option>
-            @endforeach
+
           </select>
         </div>
-
-      <form method="POST" action="{{ route('deals.store') }}" class="" >
-        @csrf
-        <div class="mb-4">
-          <label for="title" class="block text-white-700 text-sm font-bold mb-2">苗字:</label>
-          <input type="text" name="title" id="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
-        </div>
-        <div class="mb-4">
-          <label for="amount" class="block text-white-700 text-sm font-bold mb-2">名前:</label>
-          <input type="text" name="amount" id="amount" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
-        </div>
-        @if ($errors->any())
-      @foreach ($errors->all() as $error)
-        <div>{{ $error }}</div>
-      @endforeach
-      @endif
-      <form method="POST" action="{{ route('deals.store') }}" class="" >
-        @csrf
+      
         <div class="mb-4">
           <label for="status" class="block text-white-700 text-sm font-bold mb-2">ステータス:</label>
           <select name="status" id="status" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
             <option value="">ステータスを選択してください</option>
-            @foreach($status as $status)
-              <option value="{{ id1 }}">見込み客発掘</option>
-              <option value="{{ id2 }}">資格確認</option>
-              <option value="{{ id3 }}">ニーズ分析</option>
-              <option value="{{ id4 }}">提案</option>
-              <option value="{{ id5 }}">交渉</option>
-              <option value="{{ id6 }}">成約</option>
-              <option value="{{ id7 }}">失注</option>
-            @endforeach
+              <option value="prospecting">見込み客発掘</option>
+              <option value="eligibility">資格確認</option>
+              <option value="needs">ニーズ分析</option>
+              <option value="suggestion">提案</option>
+              <option value="negotiation">交渉</option>
+              <option value="contract">成約</option>
+              <option value="lost">失注</option>
           </select>
         </div>
         <div class="mb-4">
@@ -90,5 +105,6 @@
 
           <a href="{{ route('deals.index') }}" class="text-blue-500 hover:underline">キャンセル</a>
         </div>
+      </form>
 
 </x-layouts.app>
