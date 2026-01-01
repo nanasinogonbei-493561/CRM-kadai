@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Company>
@@ -56,5 +57,9 @@ class CompanyFactory extends Factory
             'description' => null,
             'notes' => null,
         ]);
+    }
+
+    public function run(): void {
+        User::factory()->count(10)->create();
     }
 }

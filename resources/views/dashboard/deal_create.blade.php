@@ -46,6 +46,12 @@
 
       <form method="POST" action="{{ route('deals.store') }}" class="" >
         @csrf
+
+        <div class="mb-4">
+          <label for="title" class="block text-white-700 text-sm font-bold mb-2">タイトル:</label>
+          <input type="text" name="title" id="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+
         <div class="mb-4">
           <label for="company_id" class="block text-white-700 text-sm font-bold mb-2">会社:</label>
           <select name="company_id" id="company_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
@@ -70,16 +76,21 @@
         </div>
       
         <div class="mb-4">
+          <label for="amount" class="block text-white-700 text-sm font-bold mb-2">金額(円):</label>
+          <input type="integer" name="amount" id="amount" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+        </div>
+
+        <div class="mb-4">
           <label for="status" class="block text-white-700 text-sm font-bold mb-2">ステータス:</label>
           <select name="status" id="status" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
             <option value="">ステータスを選択してください</option>
-              <option value="prospecting">見込み客発掘</option>
-              <option value="eligibility">資格確認</option>
-              <option value="needs">ニーズ分析</option>
-              <option value="suggestion">提案</option>
-              <option value="negotiation">交渉</option>
-              <option value="contract">成約</option>
-              <option value="lost">失注</option>
+            <option value="prospecting">見込み客発掘</option>
+            <option value="eligibility">資格確認</option>
+            <option value="needs">ニーズ分析</option>
+            <option value="suggestion">提案</option>
+            <option value="negotiation">交渉</option>
+            <option value="contract">成約</option>
+            <option value="lost">失注</option>
           </select>
         </div>
         <div class="mb-4">
@@ -87,9 +98,9 @@
           <input type="date" name="date" id="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
         <div class="mb-4">
-          <label for="percentage" class="block text-white-700 text-sm font-bold mb-2">確率:</label>
+          <label for="percentage" class="block text-white-700 text-sm font-bold mb-2">確率(%):</label>
           <input type="number" name="percentage" id="percentage" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" min="0" max="100" required>
-          <p class="font-medium">{{ $deal->probability }}%</p>
+          <p class="font-medium"></p>
         <div class="mb-4">
           <label for="description" class="block text-white-700 text-sm font-bold mb-2">説明:</label>
           <textarea name="description" id="description" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3"></textarea>

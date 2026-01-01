@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\User;
 use App\Models\Company;
+use App\Models\Contact;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -19,7 +20,7 @@ class DatabaseSeeder extends Seeder
         Company::create([
             'name' => 'Test Company',
         ]);
-         Company::create([
+        Company::create([
             'name' => 'Test Company2',
         ]);
 
