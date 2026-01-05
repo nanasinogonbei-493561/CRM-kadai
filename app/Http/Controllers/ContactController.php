@@ -47,8 +47,9 @@ class ContactController extends Controller
     }
 
     public function show($id){
+        $companies = \App\Models\Company::all();
         $contact = \App\Models\Contact::findOrFail($id);
-        return view('dashboard.contact_show', compact('contact'));
+        return view('dashboard.contact_show', compact('contact', 'companies'));
     }
 
     public function edit($id){
@@ -72,6 +73,7 @@ class ContactController extends Controller
         ]);
 
         //会社を更新
+        $companies = \App\Models\Company::all();
         $contact = \App\Models\Contact::findOrFail($id);
         $contact->update($validated);
 

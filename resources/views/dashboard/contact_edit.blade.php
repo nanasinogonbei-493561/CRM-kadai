@@ -6,59 +6,63 @@
         <div>{{ $error }}</div>
       @endforeach
       @endif
-      <form method="PUT" action="{{ route('contacts.update', $company->id) }}" class="" >
+      <form method="POST" action="{{ route('contacts.update', $contact->id) }}" class="" >
         @csrf
+        @method('PUT')
         <div class="mb-4">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}" />
           <label for="company_id" class="block text-white-700 text-sm font-bold mb-2">会社:</label>
           <select name="company_id" id="company_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
             <option value="">会社を選択してください</option>
             @foreach($companies as $company)
-              <option value="{{ $company->id }}">{{ $company->name }}</option>
+              <option value="{{ $company->id }}" @selected($company->id == $contact->company_id)>{{ $company->name }}</option>
             @endforeach
           </select>
-          <p>{{ $company->name }}</p>
         </div>
 
         <div class="mb-4">
           <label for="first_name" class="block text-white-700 text-sm font-bold mb-2">苗字:</label>
-          <input type="name" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <input type="text" name="first_name" id="first_name" value="{{ old('first_name', $contact->first_name) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
           <p>{{ $contact->first_name }}</p>
         </div>
         <div class="mb-4">
           <label for="last_name" class="block text-white-700 text-sm font-bold mb-2">名前:</label>
-          <input type="name" name="name" id="name" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <input type="text" name="last_name" id="last_name" value="{{ old('last_name', $contact->last_name) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
           <p>{{ $contact->last_name }}</p>
         </div>
         <div class="mb-4">
           <label for="position" class="block text-white-700 text-sm font-bold mb-2">役職:</label>
-          <input type="text" name="position" id="position" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <input type="text" name="position" id="position" value="{{ old('position', $contact->position) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
           <p>{{ $contact->position }}</p>
         </div>
         <div class="mb-4">
           <label for="email" class="block text-white-700 text-sm font-bold mb-2">メールアドレス:</label>
-          <input type="email" name="email" id="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <input type="email" name="email" id="email" value="{{ old('email', $contact->email) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
           <p>{{ $contact->email }}</p>
         </div>
         <div class="mb-4">
           <label for="phone" class="block text-white-700 text-sm font-bold mb-2">電話番号:</label>
-          <input type="text" name="phone" id="phone" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <input type="text" name="phone" id="phone" value="{{ old('phone', $contact->phone) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
           <p>{{ $contact->phone }}</p>
         </div>
         <div class="mb-4">
           <label for="mobile" class="block text-white-700 text-sm font-bold mb-2">携帯電話番号:</label>
-          <input type="text" name="mobile" id="mobile" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <input type="text" name="mobile" id="mobile" value="{{ old('mobile', $contact->mobile) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
           <p>{{ $contact->mobile }}</p>
         </div>
         <div class="mb-4">
           <label for="notes" class="block text-white-700 text-sm font-bold mb-2">メモ:</label>
-          <textarea name="nates" id="notes" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3"></textarea>
+          <textarea name="nates" id="notes" value="{{ old('notes', $contact->notes) }}" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3"></textarea>
+          <p> {{ $contact->notes }}</p>
         </div>
         <div class="flex items-center justify-between">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-            作成
+            更新
           </button>
 
 
           <a href="{{ route('contacts.index') }}" class="text-blue-500 hover:underline">キャンセル</a>
+        </div>
+      </form>
     </div>
 </x-layouts.app>
