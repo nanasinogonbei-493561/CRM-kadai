@@ -52,8 +52,8 @@
         </div>
         <div class="mb-4">
           <label for="notes" class="block text-white-700 text-sm font-bold mb-2">メモ:</label>
-          <textarea name="nates" id="notes" value="{{ old('notes', $contact->notes) }}" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3"></textarea>
-          <p> {{ $contact->notes }}</p>
+          <textarea name="notes" id="notes" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('notes', $contact->notes) }}</textarea>
+          <p>{{ $contact->notes }}</p>
         </div>
         <div class="flex items-center justify-between">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
