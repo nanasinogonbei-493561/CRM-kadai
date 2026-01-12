@@ -47,6 +47,26 @@ Route::middleware(['auth'])->group(function (){
     Route::delete('dashboard/deals/{id}', [\App\Http\Controllers\DealController::class, 'destroy'])->name('deals.destroy');
 });
 
+Route::middleware(['auth'])->group(function (){
+    Route::get('dashboard/activities', [\App\Http\Controllers\ActivityController::class, 'index'])->name('activities.index');
+    Route::get('dashboard/activities/create', [\App\Http\Controllers\ActivityController::class, 'create'])->name('activities.create');
+    Route::post('dashboard/activities', [\App\Http\Controllers\ActivityController::class, 'store'])->name('activities.store');
+    Route::get('dashboard/activities/{id}', [\App\Http\Controllers\ActivityController::class, 'show'])->name('activities.show');
+    Route::get('dashboard/activities/{id}/edit', [\App\Http\Controllers\ActivityController::class, 'edit'])->name('activities.edit');
+    Route::put('dashboard/activities/{id}', [\App\Http\Controllers\ActivityController::class, 'update'])->name('activities.update');
+    Route::delete('dashboard/activities/{id}', [\App\Http\Controllers\ActivityController::class, 'destroy'])->name('activities.destroy');
+});
+
+Route::middleware(['auth'])->group(function (){
+    Route::get('dashboard/activiteis', [\App\Http\Controllers\ActivityController::class, 'index'])->name('activiteis.index');
+    Route::get('dashboard/activiteis/create', [\App\Http\Controllers\ActivityController::class, 'create'])->name('activiteis.create');
+    Route::post('dashboard/activiteis', [\App\Http\Controllers\ActivityController::class, 'store'])->name('activiteis.store');
+    Route::get('dashboard/activiteis/{id}', [\App\Http\Controllers\ActivityController::class, 'show'])->name('activiteis.show');
+    Route::get('dashboard/activiteis/{id}/edit', [\App\Http\Controllers\ActivityController::class, 'edit'])->name('activiteis.edit');
+    Route::put('dashboard/activiteis/{id}', [\App\Http\Controllers\ActivityController::class, 'update'])->name('activiteis.update');
+    Route::delete('dashboard/activiteis/{id}', [\App\Http\Controllers\ActivityController::class, 'destroy'])->name('activiteis.destroy');
+});
+
 Route::middleware(['auth'])->group(function () {
     Route::redirect('settings', 'settings/profile');
 

@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::table('deals', function (Blueprint $table) {
             $table->foreignId('contact_id')->nullable()->constrained()->nullOnDelete();
         });
+
+        Schema::table('activities', function (Blueprint $table) {
+            $table->foreignId('deal_id')->nullable()->constrained()->nullOnDelete();
+        });
     }
 
     /**
@@ -23,6 +27,10 @@ return new class extends Migration
     {
         Schema::table('deals', function (Blueprint $table) {
             $table->dropConstrainedForeignId('contact_id');
+        });
+
+        Schema::table('activities', function (Blueprint $table) {
+            $table->dropConstrainedForeignId('deal_id');
         });
     }
 };
