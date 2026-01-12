@@ -42,7 +42,7 @@ class DealController extends Controller
             'amount' => 'required|integer',
             'status' => 'nullable|string',
             'date' => 'nullable|date',
-            'probability' => 'nullable|percentage',
+            'probability' => 'nullable|integer|between:0,100',
             'description' => 'nullable|string',
             'notes' => 'nullable|string',
         ],[
@@ -93,7 +93,7 @@ class DealController extends Controller
             'amount' => 'required|integer',
             'status' => 'nullable|string',
             'date' => 'nullable|date',
-            'probability' => 'nullable|percentage',
+            'probability' => 'nullable|integer|between:0,100',
             'description' => 'nullable|string',
             'notes' => 'nullable|string'
         ]);

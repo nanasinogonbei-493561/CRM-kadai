@@ -98,8 +98,8 @@
           <input type="date" name="date" id="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
         <div class="mb-4">
-          <label for="percentage" class="block text-white-700 text-sm font-bold mb-2">確率(%):</label>
-          <input type="number" name="percentage" id="percentage" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" min="0" max="100" required>
+          <label for="probability" class="block text-white-700 text-sm font-bold mb-2">確率(%):</label>
+          <input type="number" name="probability" id="probability" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" min="0" max="100" required>
           <p class="font-medium"></p>
         <div class="mb-4">
           <label for="description" class="block text-white-700 text-sm font-bold mb-2">説明:</label>

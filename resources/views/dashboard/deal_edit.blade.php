@@ -101,9 +101,9 @@
           <p>{{ $deal->date }}</p>
         </div>
         <div class="mb-4">
-          <label for="percentage" class="block text-white-700 text-sm font-bold mb-2">確率(%):</label>
-          <input type="number" name="percentage" id="percentage" value="{{ old('percentage', $deal->percentage) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
-          <p>{{ $deal->percentage }}</p>
+          <label for="probability" class="block text-white-700 text-sm font-bold mb-2">確率(%):</label>
+          <input type="number" name="probability" id="probability" value="{{ old('probability', $deal->probability) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <p>{{ $deal->probability }}</p>
         </div>
         <div class="mb-4">
           <label for="description" class="block text-white-700 text-sm font-bold mb-2">説明:</label>
