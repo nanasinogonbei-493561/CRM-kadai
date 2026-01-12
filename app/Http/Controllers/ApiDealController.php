@@ -8,7 +8,7 @@ class ApiDealController extends Controller
 {
     //
     public function getDealsByCompany($companyId) {
-        $contacts = \App\Models\Deal::where('company_id', $companyId)->get();
+        $deals = \App\Models\Deal::where('company_id', $companyId)->get();
         return response()->json($deals);
     }
 }

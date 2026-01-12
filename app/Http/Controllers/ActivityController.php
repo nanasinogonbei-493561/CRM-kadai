@@ -13,7 +13,7 @@ class ActivityController extends Controller
     {
         //
         $activities = \App\Models\Activity::with(['company', 'contact', 'deal'])->get();
-        return view('dashboard.activities_index', compact('activities'));
+        return view('dashboard.activity_index', compact('activities'));
     }
 
     /**
