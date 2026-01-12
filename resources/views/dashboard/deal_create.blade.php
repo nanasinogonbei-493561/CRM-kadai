@@ -25,7 +25,7 @@
                .then(response => response.json())
                .then(data => {
                 console.log('取得した連絡先データ:', data);
-                data.foreach(contact => {
+                data.forEach(contact => {
                  console.log('連絡先:', contact);
                  const option = document.createElement('option');
                  option.value = contact.id;

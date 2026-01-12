@@ -14,7 +14,7 @@ class DealController extends Controller
     public function index()
     {
         //
-        $deals = \App\Models\Deal::all();
+        $deals = \App\Models\Deal::with(['company', 'contact'])->get();
         // dd($deals);
         return view('dashboard.deal_index', compact('deals'));
     }
@@ -37,6 +37,7 @@ class DealController extends Controller
         //バリデーション
         $validated = $request->validate([
             'company_id' => 'required|string',
+            'contact_id' => 'required|string',
             'title' => 'required|string|max:255',
             'amount' => 'required|integer',
             'status' => 'nullable|string',
@@ -53,7 +54,7 @@ class DealController extends Controller
 
             //商談を作成
             \App\Models\Deal::create($validated);
-            return redirect()->route('deal.index')->with('success', 'Deal created successfull');
+            return redirect()->route('deals.index')->with('success', 'Deal created successfull');
     }
 
     /**
@@ -62,8 +63,9 @@ class DealController extends Controller
     public function show($id)
     {
         //
+        $companies = \App\Models\Company::all();
         $deal = \App\Models\Deal::findOrFail($id);
-        return view('dashboard.deal_show', compact('deal'));
+        return view('dashboard.deal_show', compact('deal', 'companies'));
     }
 
     /**
@@ -72,8 +74,9 @@ class DealController extends Controller
     public function edit($id)
     {
         //
+        $companies = \App\Models\Company::all();
         $deal = \App\Models\Deal::findOrFail($id);
-        return view('dashboard.deal_edit', compact('deal'));
+        return view('dashboard.deal_edit', compact('deal', 'companies'));
     }
 
     /**
@@ -85,6 +88,7 @@ class DealController extends Controller
         //バリデーション
         $validated = $request->validate([
             // 'company_id' => 'required|string',
+            'contact_id' => 'required|string',
             'title' => 'required|string|max:255',
             'amount' => 'required|integer',
             'status' => 'nullable|string',
@@ -95,10 +99,11 @@ class DealController extends Controller
         ]);
 
         //商談を更新
+        $companies = \App\Models\Company::all();
         $deal = \App\Models\Deal::findOrFail($id);
         $deal->update($validated);
 
-        return redirect()->route('deal.index')->with('success', 'Deal updated successfully.');
+        return redirect()->route('deals.index')->with('success', 'Deal updated successfully.');
     }
 
     /**
@@ -110,6 +115,6 @@ class DealController extends Controller
         $deal = \App\Models\Deal::findOrFail($id);
         $deal->delete();
 
-        return redirect()->route('deal.index')->with('success', 'Deal deleted successfully.');
+        return redirect()->route('deals.index')->with('success', 'Deal deleted successfully.');
     }
 }

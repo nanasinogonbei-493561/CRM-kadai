@@ -8,7 +8,7 @@ class apiContactController extends Controller
 {
     //
     public function getContactsByCompany($companyId) {
-        $contacts = \App\Models\Contact::where('company_id', $companyId->get());
-        return response() -> json($contacts);
+        $contacts = \App\Models\Contact::where('company_id', $companyId)->get();
+        return response()->json($contacts);
     }
 }

@@ -22,8 +22,8 @@
             @foreach($deals as $hensu)
               <tr>
                 <td class="border px-4 py-2">{{ $hensu->title }}</td>
-                <td class="border px-4 py-2">{{ $hensu->name }}</td>
-                <td class="border px-4 py-2">{{ $hensu->contact }}</td>
+                <td class="border px-4 py-2">{{ optional($hensu->company)->name }}</td>
+                <td class="border px-4 py-2">{{ optional($hensu->contact)->first_name }} {{ optional($hensu->contact)->last_name }}</td>
                 <td class="border px-4 py-2">{{ $hensu->amount }}</td>
                 <td class="border px-4 py-2">{{ $hensu->status }}</td>
                 <td class="border px-4 py-2">{{ $hensu->date }}</td>
