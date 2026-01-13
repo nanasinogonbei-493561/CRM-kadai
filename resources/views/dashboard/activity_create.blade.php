@@ -133,7 +133,7 @@
             作成
           </button>
 
-          <a href="{{ route('activity.index') }}" class="text-blue-500 hover:underline">キャンセル</a>
+          <a href="{{ route('activities.index') }}" class="text-blue-500 hover:underline">キャンセル</a>
         </div>
       </form>
 

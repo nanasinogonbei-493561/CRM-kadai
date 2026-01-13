@@ -26,7 +26,7 @@
                 <td class="border px-4 py-2">{{ optional($hensu->company)->name }}</td>
                 <td class="border px-4 py-2">{{ optional($hensu->contact)->first_name }} {{ optional($hensu->contact)->last_name }}</td>
                 <td class="border px-4 py-2">{{ $hensu->date }}</td>
-                <td class="border px-4 py-2">{{ $hensu->description }}</td>
+                <td class="border px-4 py-2">{{ $hensu?->description }}</td>
                 <td class="border px-4 py-2">
                   <a href="{{ route('activities.show', $hensu->id) }}" class="text-blue-500 hover:underline">詳細</a>
                 </td>
