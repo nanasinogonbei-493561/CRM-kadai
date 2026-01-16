@@ -20,6 +20,11 @@ class HomeController extends Controller
             ->whereLike('name' , '%%')
             ->get();
 
+        $activities = DB::table('activities')
+            ->whereLike('name' , '%%')
+            ->get();
+
+
         return view('dashboard');
     }
 }
