@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('deals', function (Blueprint $table) {
             $table->id();
             $table->foreignId('company_id')->constrained()->onDelete('cascade');
+            $table->foreignId('contact_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
             $table->integer('amount');
