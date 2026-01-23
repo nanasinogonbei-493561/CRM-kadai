@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class apiContactController extends Controller
+class ApiContactController extends Controller
 {
     //
     public function getContactsByCompany($companyId) {
