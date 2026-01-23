@@ -52,4 +52,10 @@ Controller: ModelとViewを繋ぐ架け橋
 Laravelの公式ドキュメントを検索して、読んで実装しました。
 
 ### 構造化ログについて。
-Laravelの公式
+Laravelの公式ドキュメントを検索して、読んで実装しました。
+
+### デプロイについて。
+Conoha VPSからデプロイしました。
+はじめにアップデートした後、PHP-FPMとcomposerとNginxをインストールし、DNSを設定した後、CerbotでSSL化しました。
+その後、ログイン画面が出なかったので、npm run devしてなかったのが原因だと突き止め、バグ直しました。
+
