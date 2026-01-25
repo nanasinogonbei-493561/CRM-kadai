@@ -11,26 +11,32 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('deals', function (Blueprint $table) {
-            $table->foreignId('contact_id')->nullable()->constrained()->nullOnDelete();
-        });
+        if (!Schema::hasColumn('deals', 'contact_id')) {
+            Schema::table('deals', function (Blueprint $table) {
+                $table->foreignId('contact_id')->nullable()->constrained()->nullOnDelete();
+            });
+        }
 
-        Schema::table('activities', function (Blueprint $table) {
-            $table->foreignId('deal_id')->nullable()->constrained()->nullOnDelete();
-        });
+        if (!Schema::hasColumn('activities', 'deal_id')) {
+            Schema::table('activities', function (Blueprint $table) {
+                $table->foreignId('deal_id')->nullable()->constrained()->nullOnDelete();
+            });
+        }
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
-        Schema::table('deals', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('contact_id');
-        });
+        if (Schema::hasColumn('deals', 'contact_id')) {
+            Schema::table('deals', function (Blueprint $table) {
+                $table->dropConstrainedForeignId('contact_id');
+            });
+        }
 
-        Schema::table('activities', function (Blueprint $table) {
-            $table->dropConstrainedForeignId('deal_id');
-        });
+        if (Schema::hasColumn('activities', 'deal_id')) {
+            Schema::table('activities', function (Blueprint $table) {
+                $table->dropConstrainedForeignId('deal_id');
+            });
+        }
     }
+
 };
