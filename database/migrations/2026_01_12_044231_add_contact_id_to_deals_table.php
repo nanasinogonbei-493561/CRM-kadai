@@ -16,12 +16,6 @@ return new class extends Migration
                 $table->foreignId('contact_id')->nullable()->constrained()->nullOnDelete();
             });
         }
-
-        if (!Schema::hasColumn('activities', 'deal_id')) {
-            Schema::table('activities', function (Blueprint $table) {
-                $table->foreignId('deal_id')->nullable()->constrained()->nullOnDelete();
-            });
-        }
     }
 
     public function down(): void
@@ -29,12 +23,6 @@ return new class extends Migration
         if (Schema::hasColumn('deals', 'contact_id')) {
             Schema::table('deals', function (Blueprint $table) {
                 $table->dropConstrainedForeignId('contact_id');
-            });
-        }
-
-        if (Schema::hasColumn('activities', 'deal_id')) {
-            Schema::table('activities', function (Blueprint $table) {
-                $table->dropConstrainedForeignId('deal_id');
             });
         }
     }
