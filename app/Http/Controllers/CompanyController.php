@@ -10,7 +10,9 @@ class CompanyController extends Controller
     public function index(){
 
         //会社一覧を取得してビューに渡す
-        $companies = \App\Models\Company::all();
+        $companies = Company::query()
+        ->company($request->company)
+        ->get();
         //dd($companies);
         return view('dashboard.company_index', compact('companies'));
     }

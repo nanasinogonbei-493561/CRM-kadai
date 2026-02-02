@@ -1,6 +1,15 @@
 <x-layouts.app :title="__('Dashboard')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
       <h2>会社一覧</h2>
+      <div>
+        <h3>会社検索フォーム</h3>
+        <form action="http://localhost:8000/companies/index" method="GET">
+          <label for="name">会社名:</label>
+          <input type="text" id="name" name="name" placeholder="会社名を入力してください"><br><br>
+
+          <button type="submit">検索</button>
+        </form>
+      </div>
       <a href="{{ route('companies.create') }}" class="text-blue-500 hover:underline">新規作成</a>
       <div class="overflow-x-auto">
         <table class="w-full table-auto">
