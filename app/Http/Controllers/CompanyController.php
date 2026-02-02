@@ -2,19 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
 {
     //
-    public function index(){
+    public function index(Request $request){
+        $name = $request->input('name');
 
-        //会社一覧を取得してビューに渡す
+        $nameOptions = Company::query()
+            ->select('name')
+            ->whereNotNull('name')
+            ->distinct()
+            ->orderBy('name')
+            ->pluck('name');
+
         $companies = Company::query()
-        ->company($request->company)
-        ->get();
-        //dd($companies);
-        return view('dashboard.company_index', compact('companies'));
+            ->when($name, function ($query, $name) {
+                $query->where('name', $name);
+            })
+            ->get();
+
+        return view('dashboard.company_index', compact('companies', 'name', 'nameOptions'));
     }
 
     public function create(){
@@ -79,5 +89,31 @@ class CompanyController extends Controller
         $company->delete();
 
         return redirect()->route('companies.index')->with('success', 'Company deleted successfully.');
+    }
+
+    public function search(Request $request)
+    {
+        // 入力からの会社名を取得
+        $name = $request->input('name');
+
+        // クエリビルダのインスタンスを作成
+        $query = Company::query();
+
+        try {
+            // 名前フィルタがあれば、クエリに追加
+            if ($name) {
+                $query->where('name', 'LIKE', "%$name%");
+            }
+
+            // クエリを実行して結果を取得
+            $companies = $query->get();
+
+            // 結果が0件でも空配列で返す
+            return response()->json($companies);
+
+        } catch (\Exception $e) {
+            // 例外が発生した場合の処理
+            return response()->json(['error' => 'エラーが発生しました: ' . $e->getMessage()], 500);
+        }
     }
 }

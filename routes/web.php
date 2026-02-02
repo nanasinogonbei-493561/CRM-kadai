@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\CompanyController;
 
 Route::get('/home', [HomeController::class, 'index']);
 
@@ -80,6 +81,6 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/api/contacts/{companyId}', [\App\Http\Controllers\ApiContactController::class, 'getContactsByCompany']);
 Route::get('/api/deals/{companyId}', [\App\Http\Controllers\ApiDealController::class, 'getDealsByCompany']);
 
-Route::get('/companies', [HomeController::class, 'search']);
+Route::get('/companies', [CompanyController::class, 'search']);
 
 require __DIR__.'/auth.php';
