@@ -82,5 +82,6 @@ Route::get('/api/contacts/{companyId}', [\App\Http\Controllers\ApiContactControl
 Route::get('/api/deals/{companyId}', [\App\Http\Controllers\ApiDealController::class, 'getDealsByCompany']);
 
 Route::get('/companies', [CompanyController::class, 'search']);
+Route::get('/contacts/search', [ContactController::class, 'search']);
 
 require __DIR__.'/auth.php';

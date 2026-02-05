@@ -8,13 +8,27 @@ class ContactController extends Controller
 {
     //
     public function index() {
+        $CompanyName = $request->input('CompanyName');
+
+        $CompanyNameOptions = Company::query()
+            ->select('CompanyName')
+            ->whereNotNull('CompanyName')
+            ->distinct()
+            ->orderBy('CompanyName')
+            ->pluck('CompanyName');
+
+        $companies = Company::query()
+            ->when($CompanyName, function ($query, $CompanyName) {
+                $query->where('CompanyName', $CompanyName);
+            })
+            ->get();
         $contacts = \App\Models\Contact::all();
         // dd($contacts);
         return view('dashboard.contact_index', compact('contacts'));
     }
 
     public function create(){
-        //会社情報 ログインしてるuser_idのものだけ取得するように修正必要
+        //会社情報をプルダウンで選択出来るように修正
         $companies = \App\Models\Company::all();
         return view('dashboard.contact_create', compact('companies'));
     }
@@ -85,5 +99,31 @@ class ContactController extends Controller
         $contact->delete();
 
         return redirect()->route('contacts.index')->with('success', 'Contact deleted successfully.');
+    }
+
+    public function search(Request $request)
+    {
+        // 入力からの会社名を取得
+        $CompanyName = $request->input('CompanyName');
+
+        // クエリビルダのインスタンスを作成
+        $query = Company::query();
+
+        try {
+            // 名前フィルタがあれば、クエリに追加
+            if ($CompanyName) {
+                $query->where('CompanyName', 'LIKE', "%$CompanyName%");
+            }
+
+            // クエリを実行して結果を取得
+            $companies = $query->get();
+
+            // 結果が0件でも空配列で返す
+            return response()->json($companies);
+
+        } catch (\Exception $e) {
+            // 例外が発生した場合の処理
+            return response()->json(['error' => 'エラーが発生しました: ' . $e->getMessage()], 500);
+        }
     }
 }

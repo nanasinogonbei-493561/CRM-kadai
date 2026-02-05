@@ -2,6 +2,25 @@
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
       <h2>連絡先一覧</h2>
       <a href="{{ route('contacts.create') }}" class="text-blue-500 hover:underline">新規作成</a>
+
+      <div>
+        <h3>連絡先検索フォーム</h3>
+        <form action="{{ route('contacts.index') }}" method="GET">
+          <label for="company_id">会社名:</label>
+          <select id="company_id" name="company_id">
+            <option value="">すべて</option>
+            @foreach($CompanyNameOptions as $CompanyOptionName)
+              <option value="{{ $CompanyOptionName }}" {{ ($CompanyName ?? '') === $CompanyOptionName ? 'selected' : '' }}>
+                {{ $CompanyOptionName }}
+              </option>
+            @endforeach
+          </select>
+          <br><br>
+          <button type="submit">検索</button>
+          <a href="{{ route('companies.index') }}" class="ml-2 text-blue-500 hover:underline">リセット</a>
+        </form>
+      </div>
+
       <div class="overflow-x-auto">
         <table class="w-full table-auto">
           <thead>
