@@ -9,15 +9,15 @@
           <label for="company_id">会社名:</label>
           <select id="company_id" name="company_id">
             <option value="">すべて</option>
-            @foreach($CompanyNameOptions as $CompanyOptionName)
-              <option value="{{ $CompanyOptionName }}" {{ ($CompanyName ?? '') === $CompanyOptionName ? 'selected' : '' }}>
-                {{ $CompanyOptionName }}
+            @foreach($companies as $company)
+              <option value="{{ $company->id }}" {{ (string)($companyId ?? '') === (string)$company->id ? 'selected' : '' }}>
+                {{ $company->name }}
               </option>
             @endforeach
           </select>
           <br><br>
           <button type="submit">検索</button>
-          <a href="{{ route('companies.index') }}" class="ml-2 text-blue-500 hover:underline">リセット</a>
+          <a href="{{ route('contacts.index') }}" class="ml-2 text-blue-500 hover:underline">リセット</a>
         </form>
       </div>
 
@@ -35,7 +35,7 @@
             </tr>
           </thead>
           <tbody>
-            @foreach($contacts as $hensu)
+            @forelse($contacts as $hensu)
               <tr>
                 <td class="border px-4 py-2">{{ $hensu->first_name }}</td>
                 <td class="border px-4 py-2">{{ $hensu->last_name }}</td>
@@ -54,7 +54,11 @@
                   </form>
                 </td>
               </tr>
-            @endforeach
+            @empty
+              <tr>
+                <td class="border px-4 py-2 text-center" colspan="6">検索結果がありません。</td>
+              </tr>
+            @endforelse
           </tbody>
         </table>
     </div>

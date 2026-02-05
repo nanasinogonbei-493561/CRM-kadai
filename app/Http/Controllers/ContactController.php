@@ -2,29 +2,28 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
 {
     //
-    public function index() {
-        $CompanyName = $request->input('CompanyName');
-
-        $CompanyNameOptions = Company::query()
-            ->select('CompanyName')
-            ->whereNotNull('CompanyName')
-            ->distinct()
-            ->orderBy('CompanyName')
-            ->pluck('CompanyName');
+    public function index(Request $request) {
+        $companyId = $request->input('company_id');
 
         $companies = Company::query()
-            ->when($CompanyName, function ($query, $CompanyName) {
-                $query->where('CompanyName', $CompanyName);
+            ->select('id', 'name')
+            ->orderBy('name')
+            ->get();
+
+        $contacts = Contact::query()
+            ->when($companyId, function ($query, $companyId) {
+                $query->where('company_id', $companyId);
             })
             ->get();
-        $contacts = \App\Models\Contact::all();
-        // dd($contacts);
-        return view('dashboard.contact_index', compact('contacts'));
+
+        return view('dashboard.contact_index', compact('contacts', 'companies', 'companyId'));
     }
 
     public function create(){
