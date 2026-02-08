@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 class HomeController extends Controller 
 {
+    // 検索したら検索画面に偏移するようにしました。
     public function index() {
         $companies = DB::table('companies')
             ->whereLike('name', '%%')

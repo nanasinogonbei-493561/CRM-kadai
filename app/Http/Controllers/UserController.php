@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\View;
 
-
+// 構造化ログの設定をしました。
 Log::error($message);
 Log::warning($message);
 Log::info($message);

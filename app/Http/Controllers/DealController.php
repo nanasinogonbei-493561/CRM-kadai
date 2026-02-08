@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Deal;
+use App\Models\Company;
 use Illuminate\Http\Request;
 use Illuminate\Support\Number;
 
@@ -11,12 +12,54 @@ class DealController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $deals = \App\Models\Deal::with(['company', 'contact'])->get();
-        // dd($deals);
-        return view('dashboard.deal_index', compact('deals'));
+        $title = $request->input('title');
+        $companyId = $request->input('company_id');
+        $status = $request->input('status');
+
+        $titleOptions = Deal::query()
+            ->select('title')
+            ->whereNotNull('title')
+            ->distinct()
+            ->orderBy('title')
+            ->pluck('title');
+
+        $companyOptions = Company::query()
+            ->select('id', 'name')
+            ->orderBy('name')
+            ->get();
+
+        $statusOptions = Deal::query()
+            ->select('status')
+            ->whereNotNull('status')
+            ->where('status', '!=', '')
+            ->distinct()
+            ->orderBy('status')
+            ->pluck('status');
+
+        $deals = Deal::query()
+            ->with(['company', 'contact'])
+            ->when($title, function ($query, $title) {
+                $query->where('title', $title);
+            })
+            ->when($companyId, function ($query, $companyId) {
+                $query->where('company_id', $companyId);
+            })
+            ->when($status, function ($query, $status) {
+                $query->where('status', $status);
+            })
+            ->get();
+
+        return view('dashboard.deal_index', compact(
+            'deals',
+            'title',
+            'companyId',
+            'status',
+            'titleOptions',
+            'companyOptions',
+            'statusOptions'
+        ));
     }
 
     /**
@@ -24,7 +67,7 @@ class DealController extends Controller
      */
     public function create()
     {
-        //会社情報 ログインしてるuser_idのものだけ取得するように修正必要
+        //会社情報を取得。
         $companies = \App\Models\Company::all();
         return view('dashboard.deal_create', compact('companies'));
     }
