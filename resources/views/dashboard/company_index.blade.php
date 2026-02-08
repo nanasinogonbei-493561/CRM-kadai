@@ -7,15 +7,7 @@
         <h3>会社検索フォーム</h3>
         <form action="{{ route('companies.index') }}" method="GET">
           <label for="name">会社名:</label>
-          <select id="name" name="name">
-            <option value="">すべて</option>
-            @foreach($nameOptions as $optionName)
-              <option value="{{ $optionName }}" {{ ($name ?? '') === $optionName ? 'selected' : '' }}>
-                {{ $optionName }}
-              </option>
-            @endforeach
-          </select>
-          <br><br>
+          <input type="text" id="name" name="name" value="{{ $name ?? '' }}" placeholder="会社名を入力してください"><br><br>
           <button type="submit">検索</button>
           <a href="{{ route('companies.index') }}" class="ml-2 text-blue-500 hover:underline">リセット</a>
         </form>

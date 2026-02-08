@@ -81,7 +81,7 @@ Route::middleware(['auth'])->group(function () {
 Route::get('/api/contacts/{companyId}', [\App\Http\Controllers\ApiContactController::class, 'getContactsByCompany']);
 Route::get('/api/deals/{companyId}', [\App\Http\Controllers\ApiDealController::class, 'getDealsByCompany']);
 
-Route::get('/companies', [CompanyController::class, 'search']);
+Route::get('/companies/search', [CompanyController::class, 'search']);
 Route::get('/contacts/search', [ContactController::class, 'search']);
 
 require __DIR__.'/auth.php';

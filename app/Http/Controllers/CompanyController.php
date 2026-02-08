@@ -11,20 +11,13 @@ class CompanyController extends Controller
     public function index(Request $request){
         $name = $request->input('name');
 
-        $nameOptions = Company::query()
-            ->select('name')
-            ->whereNotNull('name')
-            ->distinct()
-            ->orderBy('name')
-            ->pluck('name');
-
         $companies = Company::query()
             ->when($name, function ($query, $name) {
-                $query->where('name', $name);
+                $query->where('name', 'like', '%' . $name . '%');
             })
             ->get();
 
-        return view('dashboard.company_index', compact('companies', 'name', 'nameOptions'));
+        return view('dashboard.company_index', compact('companies', 'name'));
     }
 
     public function create(){
