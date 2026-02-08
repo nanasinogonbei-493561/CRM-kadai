@@ -20,7 +20,8 @@
 viewに返す。
 
 ### バリデーションについて。
-//バリデーション
+```php:php
+        //バリデーション
         $validated = $request->validate([
             'company_id' => 'required|string',
             'first_name' => 'required|string|max:255',
@@ -43,6 +44,7 @@ viewに返す。
         //連絡先を作成
         \App\Models\Contact::create($validated);
         return redirect()->route('contacts.index')->with('success', 'Contact created successfull');
+```
 
 ### MVCについて。
 Model: データの情報を保持する。（DBなど）
@@ -68,4 +70,5 @@ Conoha VPSからデプロイしました。
 
 ### その他について
 学習したものをZennのscrapにて記事にしました。
+
 https://zenn.dev/nanashinogonbei/scraps/f7066c71845886
