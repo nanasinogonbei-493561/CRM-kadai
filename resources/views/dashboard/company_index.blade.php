@@ -50,5 +50,6 @@
             @endforelse
           </tbody>
         </table>
+      </div>
     </div>
 </x-layouts.app>

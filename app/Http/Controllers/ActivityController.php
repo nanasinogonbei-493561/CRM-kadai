@@ -2,18 +2,66 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activity;
+use App\Models\Deal;
+use App\Models\Company;
 use Illuminate\Http\Request;
+use Illuminate\Support\Number;
 
 class ActivityController extends Controller
 {
     /**
      * Display a listing of the resource.
+     * タイプと会社名はセレクト型検索、説明はテキスト型検索にしました。
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        $activities = \App\Models\Activity::with(['company', 'contact', 'deal'])->get();
-        return view('dashboard.activity_index', compact('activities'));
+        $type = $request->input('type');
+        $companyId = $request->input('company_id');
+        $description = $request->input('description');
+
+        $typeOptions = Activity::query()
+            ->select('type')
+            ->whereNotNull('type')
+            ->distinct()
+            ->orderBy('type')
+            ->pluck('type');
+
+        $companyOptions = Company::query()
+            ->select('id', 'name')
+            ->orderBy('name')
+            ->get();
+
+        $descriptionOptions = Activity::query()
+            ->select('description')
+            ->whereNotNull('description')
+            ->where('description', '!=', '')
+            ->distinct()
+            ->orderBy('description')
+            ->pluck('description');
+
+        $activities = Activity::query()
+            ->with(['company', 'contact', 'deal'])
+            ->when($type, function ($query, $type) {
+                $query->where('type', $type);
+            })
+            ->when($companyId, function ($query, $companyId) {
+                $query->where('company_id', $companyId);
+            })
+            ->when($description, function ($query, $description) {
+                $query->where('description', 'like', '%' . $description . '%');
+            })
+            ->get();
+
+        return view('dashboard.activity_index', compact(
+            'activities',
+            'type',
+            'companyId',
+            'description',
+            'typeOptions',
+            'companyOptions',
+            'descriptionOptions'
+        ));
     }
 
     /**
