@@ -3,29 +3,16 @@
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../vendor/livewire/flux-pro/stubs/**/*.blade.php';
-@source '../../vendor/livewire/flux/stubs/**/*.blade.php';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
-
-    --color-zinc-50: #fafafa;
-    --color-zinc-100: #f5f5f5;
-    --color-zinc-200: #e5e5e5;
-    --color-zinc-300: #d4d4d4;
-    --color-zinc-400: #a3a3a3;
-    --color-zinc-500: #737373;
-    --color-zinc-600: #525252;
-    --color-zinc-700: #404040;
-    --color-zinc-800: #262626;
-    --color-zinc-900: #171717;
-    --color-zinc-950: #0a0a0a;
-
+    /* カスタムテーマ変数 */
+    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif;
     --color-accent: var(--color-neutral-800);
     --color-accent-content: var(--color-neutral-800);
     --color-accent-foreground: var(--color-white);
+    --color-accent: var(--color-neutral-800);
 }
 
 @layer theme {
@@ -37,7 +24,7 @@
 }
 
 @layer base {
-
+    /* 基本スタイル */
     *,
     ::after,
     ::before,
@@ -47,20 +34,69 @@
     }
 }
 
-[data-flux-field]:not(ui-radio, ui-checkbox) {
-    @apply grid gap-2;
+@layer components {
+    /* コンポーネントクラス(ここに追加推奨) */
+    /* 新規作成 */
+    .create {
+        @apply text-blue-500 gap-10 hover:underline dark:text-sky-400;
+    }
+    /* 会社一覧のレイアウト */
+    .Company-layout {
+        @apply flex h-full w-full flex-1 flex-col gap-5 p-5 rounded-xl ;
+    }
+    .Company-searchForm {
+        @apply flex w-full flex-initial flex-col;
+    }
+    .Company-table {
+        @apply overflow-y-scroll gap-3;
+    }
+    .Company-table-layout {
+        @apply w-full table-fixed rounded-2xl;
+    }
+
+    /* 連絡先一覧のレイアウト */
+    .Contact-layout {
+        @apply flex h-full w-full flex-col flex-1 gap-5 rounded-xl p-5;
+    }
+    .Contact-searchForm {
+        @apply flex w-full flex-initial flex-col;
+    }
+    .Contact-table {
+        @apply overflow-y-scroll gap-3;
+    }
+    .Contact-table-layout {
+        @apply w-full table-fixed rounded-2xl;
+    }
+
+    /* 商談一覧のレイアウト */
+    .Deal-layout {
+        @apply flex h-full w-full flex-col flex-1 gap-5 rounded-xl p-5;
+    }
+    .Deal-searchForm {
+        @apply flex w-full flex-initial flex-col;
+    }
+    .Deal-table {
+        @apply overflow-y-scroll gap-3;
+    }
+    .Deal-table-layout {
+        @apply w-full table-fixed rounded-2xl;
+    }
+
+    /* 活動一覧のレイアウト */
+    .Activity-layout {
+        @apply flex h-full w-full flex-col flex-1 gap-5 rounded-xl p-5;
+    }
+    .Activity-searchForm {
+        @apply flex w-full flex-initial flex-col;
+    }
+    .Activity-table {
+        @apply overflow-y-scroll gap-3;
+    }
+    .Activity-table-layout {
+        @apply w-full table-fixed rounded-2xl;
+    }
 }
 
-[data-flux-label] {
-    @apply  !mb-0 !leading-tight;
+@layer utilities {
+    /* ユーティリティクラス */
 }
-
-input:focus[data-flux-control],
-textarea:focus[data-flux-control],
-select:focus[data-flux-control] {
-    @apply outline-hidden ring-2 ring-accent ring-offset-2 ring-offset-accent-foreground;
-}
-
-/* \[:where(&)\]:size-4 {
-    @apply size-4;
-} */

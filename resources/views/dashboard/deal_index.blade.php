@@ -1,9 +1,9 @@
 <x-layouts.app :title="__('Dashboard')">
-    <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
+    <div class="Deal-layout">
       <h2>商談一覧</h2>
-      <a href="{{ route('deals.create') }}" class="text-blue-500 hover:underline">新規作成</a>
+      <a href="{{ route('deals.create') }}" class="create">新規作成</a>
 
-      <div>
+      <div class="Deal-searchForm">
         <h3>商談検索フォーム</h3>
         <form action="{{ route('deals.index') }}" method="GET">
           <label for="title">商談名:</label>
@@ -41,8 +41,8 @@
         </form>
       </div>
 
-      <div class="overflow-x-auto">
-        <table class="w-full table-auto">
+      <div class="Deal-table">
+        <table class="Deal-table-layout">
           <thead>
             <tr>
               <!-- <th class="px-4 py-2">ID</th> -->
@@ -60,19 +60,19 @@
           <tbody>
             @forelse($deals as $hensu)
               <tr>
-                <td class="border px-4 py-2">{{ $hensu->title }}</td>
-                <td class="border px-4 py-2">{{ optional($hensu->company)->name }}</td>
-                <td class="border px-4 py-2">{{ optional($hensu->contact)->first_name }} {{ optional($hensu->contact)->last_name }}</td>
-                <td class="border px-4 py-2">{{ $hensu->amount }}</td>
-                <td class="border px-4 py-2">{{ $hensu->status }}</td>
-                <td class="border px-4 py-2">{{ $hensu->date }}</td>
-                <td class="border px-4 py-2">
+                <td class="border px-4 py-2 text-center">{{ $hensu->title }}</td>
+                <td class="border px-4 py-2 text-center">{{ optional($hensu->company)->name }}</td>
+                <td class="border px-4 py-2 text-center">{{ optional($hensu->contact)->first_name }} {{ optional($hensu->contact)->last_name }}</td>
+                <td class="border px-4 py-2 text-center">{{ $hensu->amount }}</td>
+                <td class="border px-4 py-2 text-center">{{ $hensu->status }}</td>
+                <td class="border px-4 py-2 text-center">{{ $hensu->date }}</td>
+                <td class="border px-4 py-2 text-center">
                   <a href="{{ route('deals.show', $hensu->id) }}" class="text-blue-500 hover:underline">詳細</a>
                 </td>
-                <td class="border px-4 py-2">
+                <td class="border px-4 py-2 text-center">
                   <a href="{{ route('deals.edit', $hensu->id) }}" class="text-green-500 hover:underline">編集</a>
                 </td>
-                <td class="border px-4 py-2">
+                <td class="border px-4 py-2 text-center">
                   <form action="{{ route('deals.destroy', $hensu->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？');">
                     @csrf
                     @method('DELETE')
