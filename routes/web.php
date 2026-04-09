@@ -60,14 +60,17 @@ Route::middleware(['auth'])->group(function (){
     Route::delete('dashboard/activities/{id}', [\App\Http\Controllers\ActivityController::class, 'destroy'])->name('activities.destroy');
 });
 
-Route::middleware(['auth'])->group(function (){
-    Route::get('dashboard/activiteis', [\App\Http\Controllers\ActivityController::class, 'index'])->name('activiteis.index');
-    Route::get('dashboard/activiteis/create', [\App\Http\Controllers\ActivityController::class, 'create'])->name('activiteis.create');
-    Route::post('dashboard/activiteis', [\App\Http\Controllers\ActivityController::class, 'store'])->name('activiteis.store');
-    Route::get('dashboard/activiteis/{id}', [\App\Http\Controllers\ActivityController::class, 'show'])->name('activiteis.show');
-    Route::get('dashboard/activiteis/{id}/edit', [\App\Http\Controllers\ActivityController::class, 'edit'])->name('activiteis.edit');
-    Route::put('dashboard/activiteis/{id}', [\App\Http\Controllers\ActivityController::class, 'update'])->name('activiteis.update');
-    Route::delete('dashboard/activiteis/{id}', [\App\Http\Controllers\ActivityController::class, 'destroy'])->name('activiteis.destroy');
+// リード管理
+Route::middleware(['auth'])->group(function () {
+    Route::get('dashboard/leads/export', [\App\Http\Controllers\LeadController::class, 'export'])->name('leads.export');
+    Route::post('dashboard/leads/import', [\App\Http\Controllers\LeadController::class, 'import'])->name('leads.import');
+    Route::get('dashboard/leads', [\App\Http\Controllers\LeadController::class, 'index'])->name('leads.index');
+    Route::get('dashboard/leads/create', [\App\Http\Controllers\LeadController::class, 'create'])->name('leads.create');
+    Route::post('dashboard/leads', [\App\Http\Controllers\LeadController::class, 'store'])->name('leads.store');
+    Route::get('dashboard/leads/{id}', [\App\Http\Controllers\LeadController::class, 'show'])->name('leads.show');
+    Route::get('dashboard/leads/{id}/edit', [\App\Http\Controllers\LeadController::class, 'edit'])->name('leads.edit');
+    Route::put('dashboard/leads/{id}', [\App\Http\Controllers\LeadController::class, 'update'])->name('leads.update');
+    Route::delete('dashboard/leads/{id}', [\App\Http\Controllers\LeadController::class, 'destroy'])->name('leads.destroy');
 });
 
 Route::middleware(['auth'])->group(function () {
@@ -78,10 +81,12 @@ Route::middleware(['auth'])->group(function () {
     Volt::route('settings/appearance', 'settings.appearance')->name('settings.appearance');
 });
 
-Route::get('/api/contacts/{companyId}', [\App\Http\Controllers\ApiContactController::class, 'getContactsByCompany']);
-Route::get('/api/deals/{companyId}', [\App\Http\Controllers\ApiDealController::class, 'getDealsByCompany']);
-
-Route::get('/companies/search', [CompanyController::class, 'search']);
-Route::get('/contacts/search', [ContactController::class, 'search']);
+// API（補助検索用）
+Route::middleware(['auth'])->group(function () {
+    Route::get('/api/contacts/{companyId}', [\App\Http\Controllers\ApiContactController::class, 'getContactsByCompany']);
+    Route::get('/api/deals/{companyId}', [\App\Http\Controllers\ApiDealController::class, 'getDealsByCompany']);
+    Route::get('/companies/search', [CompanyController::class, 'search']);
+    Route::get('/contacts/search', [\App\Http\Controllers\ContactController::class, 'search']);
+});
 
 require __DIR__.'/auth.php';
