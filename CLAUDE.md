@@ -178,3 +178,6 @@ resources/
 - Activity history logging
 - API development
 - External system integrations
+
+## 前提
+ - docs/基本設計.mdファイルが読み込まれていること。

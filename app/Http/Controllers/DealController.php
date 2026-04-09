@@ -79,15 +79,15 @@ class DealController extends Controller
     {
         //バリデーション
         $validated = $request->validate([
-            'company_id' => 'required|string',
-            'contact_id' => 'required|string',
-            'title' => 'required|string|max:255',
-            'amount' => 'required|integer',
-            'status' => 'nullable|string',
-            'date' => 'nullable|date',
+            'company_id'  => 'required|exists:companies,id',
+            'contact_id'  => 'nullable|exists:contacts,id',
+            'title'       => 'required|string|max:255',
+            'status'      => 'nullable|in:商談中,成約,検討,断り済,失注',
+            'deal_status' => 'nullable|in:成約,検討,商談設定中',
+            'date'        => 'nullable|date',
             'probability' => 'nullable|integer|between:0,100',
             'description' => 'nullable|string',
-            'notes' => 'nullable|string',
+            'notes'       => 'nullable|string',
         ],[
             'company_id.required' => '会社IDは必須です。',
         ]);
@@ -130,15 +130,14 @@ class DealController extends Controller
         //
         //バリデーション
         $validated = $request->validate([
-            // 'company_id' => 'required|string',
-            'contact_id' => 'required|string',
-            'title' => 'required|string|max:255',
-            'amount' => 'required|integer',
-            'status' => 'nullable|string',
-            'date' => 'nullable|date',
+            'contact_id'  => 'nullable|exists:contacts,id',
+            'title'       => 'required|string|max:255',
+            'status'      => 'nullable|in:商談中,成約,検討,断り済,失注',
+            'deal_status' => 'nullable|in:成約,検討,商談設定中',
+            'date'        => 'nullable|date',
             'probability' => 'nullable|integer|between:0,100',
             'description' => 'nullable|string',
-            'notes' => 'nullable|string'
+            'notes'       => 'nullable|string',
         ]);
 
         //商談を更新

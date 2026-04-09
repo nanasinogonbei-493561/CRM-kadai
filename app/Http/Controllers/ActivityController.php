@@ -83,14 +83,18 @@ class ActivityController extends Controller
         //
         //バリデーション
         $validated = $request->validate([
-            'company_id' => 'required|string',
-            'contact_id' => 'required|string',
-            'deal_id' => 'required|string',
-            'type' => 'nullable|string',
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'date' => 'nullable|date',
-            'status' => 'nullable|string',
+            'company_id'        => 'required|exists:companies,id',
+            'contact_id'        => 'nullable|exists:contacts,id',
+            'deal_id'           => 'nullable|exists:deals,id',
+            'type'              => 'required|string',
+            'title'             => 'required|string|max:255',
+            'description'       => 'nullable|string',
+            'date'              => 'nullable|date',
+            'status'            => 'nullable|string',
+            'phone_ng'          => 'boolean',
+            'last_sales_status' => 'nullable|string',
+            'email_notes'       => 'nullable|string',
+            'call_notes'        => 'nullable|string',
         ],[
             'company_id.required' => '会社IDは必須です。',
         ]);
@@ -132,14 +136,18 @@ class ActivityController extends Controller
     {
         //
         $validated = $request->validate([
-            'company_id' => 'required|string',
-            'contact_id' => 'required|string',
-            'deal_id' => 'required|string',
-            'type' => 'nullable|string',
-            'title' => 'required|string|max:255',
-            'description' => 'nullable|string',
-            'date' => 'nullable|date',
-            'status' => 'nullable|string',
+            'company_id'        => 'required|exists:companies,id',
+            'contact_id'        => 'nullable|exists:contacts,id',
+            'deal_id'           => 'nullable|exists:deals,id',
+            'type'              => 'required|string',
+            'title'             => 'required|string|max:255',
+            'description'       => 'nullable|string',
+            'date'              => 'nullable|date',
+            'status'            => 'nullable|string',
+            'phone_ng'          => 'boolean',
+            'last_sales_status' => 'nullable|string',
+            'email_notes'       => 'nullable|string',
+            'call_notes'        => 'nullable|string',
         ]);
 
         //商談を更新
