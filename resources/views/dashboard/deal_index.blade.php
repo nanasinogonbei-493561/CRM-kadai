@@ -26,7 +26,7 @@
             @endforeach
           </select>
 
-          <label for="status" class="ml-4">ステータス:</label>
+          <label for="status" class="ml-4">商談前ステータス:</label>
           <select id="status" name="status">
             <option value="">すべて</option>
             @foreach($statusOptions as $statusOption)
@@ -45,13 +45,13 @@
         <table class="Deal-table-layout">
           <thead>
             <tr>
-              <!-- <th class="px-4 py-2">ID</th> -->
               <th class="px-4 py-2">タイトル</th>
-              <th class="px-4 py-2">会社</th>
-              <th class="px-4 py-2">連絡先</th>
-              <th class="px-4 py-2">金額</th>
-              <th class="px-4 py-2">ステータス</th>
-              <th class="px-4 py-2">見込み成約日</th>
+              <th class="px-4 py-2">会社名</th>
+              <th class="px-4 py-2">担当者名</th>
+              <th class="px-4 py-2">商談前ステータス</th>
+              <th class="px-4 py-2">商談後ステータス</th>
+              <th class="px-4 py-2">担当ユーザー</th>
+              <th class="px-4 py-2">商談日</th>
               <th class="px-4 py-2">詳細</th>
               <th class="px-4 py-2">編集</th>
               <th class="px-4 py-2">削除</th>
@@ -63,8 +63,9 @@
                 <td class="border px-4 py-2 text-center">{{ $hensu->title }}</td>
                 <td class="border px-4 py-2 text-center">{{ optional($hensu->company)->name }}</td>
                 <td class="border px-4 py-2 text-center">{{ optional($hensu->contact)->first_name }} {{ optional($hensu->contact)->last_name }}</td>
-                <td class="border px-4 py-2 text-center">{{ $hensu->amount }}</td>
                 <td class="border px-4 py-2 text-center">{{ $hensu->status }}</td>
+                <td class="border px-4 py-2 text-center">{{ $hensu->deal_status }}</td>
+                <td class="border px-4 py-2 text-center">{{ optional($hensu->user)->name }}</td>
                 <td class="border px-4 py-2 text-center">{{ $hensu->date }}</td>
                 <td class="border px-4 py-2 text-center">
                   <a href="{{ route('deals.show', $hensu->id) }}" class="text-blue-500 hover:underline">詳細</a>

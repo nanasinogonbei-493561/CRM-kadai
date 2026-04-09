@@ -1,140 +1,151 @@
 <x-layouts.app :title="__('Dashboard')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
       <h2>活動作成フォーム</h2>
+
       @if ($errors->any())
-      @foreach ($errors->all() as $error)
-        <div>{{ $error }}</div>
-      @endforeach
+        @foreach ($errors->all() as $error)
+          <div class="text-red-600">{{ $error }}</div>
+        @endforeach
       @endif
 
       <script>
         document.addEventListener('DOMContentLoaded', function() {
           const companySelect = document.getElementById('company_id');
           const contactSelect = document.getElementById('contact_id');
-          const dealSelect = document.getElementById('deal_id');
+          const dealSelect    = document.getElementById('deal_id');
 
           companySelect.addEventListener('change', function() {
-            console.log('会社選択が変更されました。');
             const companyId = this.value;
-            console.log('選択された会社ID:', companyId);
 
-            // 連絡先ドロップダウンをクリア
             contactSelect.innerHTML = '<option value="">連絡先を選択してください</option>';
-            if (companyId) {
-              // 会社IDに基づいて連絡先を取得するAPIエンドポイントにリクエストを送信
-              fetch(`/api/contacts/${companyId}`)
-               .then(response => response.json())
-               .then(data => {
-                console.log('取得した連絡先データ:', data);
+            dealSelect.innerHTML    = '<option value="">商談を選択してください</option>';
+
+            if (!companyId) return;
+
+            fetch(`/api/contacts/${companyId}`)
+              .then(r => r.json())
+              .then(data => {
                 data.forEach(contact => {
-                 console.log('連絡先:', contact);
-                 const option = document.createElement('option');
-                 option.value = contact.id;
-                 option.textContent = `${contact.first_name} ${contact.last_name}`;
-
-                 contactSelect.appendChild(option);
+                  const opt = document.createElement('option');
+                  opt.value = contact.id;
+                  opt.textContent = `${contact.first_name} ${contact.last_name}`;
+                  contactSelect.appendChild(opt);
                 });
-               })
-               .catch(error => {
-                console.error('連絡先の取得中にエラーが発生しました:', error);
-               });
-            }
-            
-            dealSelect.innerHTML = '<option value="">商談を選択してください</option>';
-            if (companyId) {
-              // 会社IDに基づいて連絡先を取得するAPIエンドポイントにリクエストを送信
-              fetch(`/api/deals/${companyId}`)
-               .then(response => response.json())
-               .then(data => {
-                console.log('取得した商談先データ:', data);
+              });
+
+            fetch(`/api/deals/${companyId}`)
+              .then(r => r.json())
+              .then(data => {
                 data.forEach(deal => {
-                 console.log('商談:', deal);
-                 const option = document.createElement('option');
-                 option.value = deal.id;
-                 option.textContent = `${deal.title}`;
-
-                 dealSelect.appendChild(option);
+                  const opt = document.createElement('option');
+                  opt.value = deal.id;
+                  opt.textContent = deal.title;
+                  dealSelect.appendChild(opt);
                 });
-               })
-               .catch(error => {
-                console.error('商談の取得中にエラーが発生しました:', error);
-               });
-            }
-            
+              });
           });
         });
       </script>
 
-      <form method="POST" action="{{ route('activities.store') }}" class="" >
+      <form method="POST" action="{{ route('activities.store') }}">
         @csrf
 
         <div class="mb-4">
-          <label for="company_id" class="block text-white-700 text-sm font-bold mb-2">会社:</label>
-          <select name="company_id" id="company_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+          <label for="company_id" class="block text-white-700 text-sm font-bold mb-2">会社 <span class="text-red-500">*</span></label>
+          <select name="company_id" id="company_id"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
             <option value="">会社を選択してください</option>
             @foreach($companies as $company)
               <option value="{{ $company->id }}">{{ $company->name }}</option>
             @endforeach
           </select>
         </div>
-        
-        @if ($errors->any())
-      @foreach ($errors->all() as $error)
-        <div>{{ $error }}</div>
-      @endforeach
-      @endif
-      
-        <div class="mb-4">
-          <label for="contact_id" class="block text-white-700 text-sm font-bold mb-2">連絡先:</label>
-          <select name="contact_id" id="contact_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
 
+        <div class="mb-4">
+          <label for="contact_id" class="block text-white-700 text-sm font-bold mb-2">連絡先</label>
+          <select name="contact_id" id="contact_id"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+            <option value="">連絡先を選択してください</option>
           </select>
         </div>
-        <div class="mb-4">
-          <label for="deal_id" class="block text-white-700 text-sm font-bold mb-2">商談:</label>
-          <select name="deal_id" id="deal_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
 
+        <div class="mb-4">
+          <label for="deal_id" class="block text-white-700 text-sm font-bold mb-2">商談</label>
+          <select name="deal_id" id="deal_id"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+            <option value="">商談を選択してください</option>
           </select>
         </div>
+
         <div class="mb-4">
-          <label for="type" class="block text-white-700 text-sm font-bold mb-2">タイプ:</label>
-          <select name="type" id="type" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
-            <option value="">タイプを選択してください</option>
-            <option value="phone">電話</option>
-            <option value="mail">メール</option>
-            <option value="meets">会議</option>
-            <option value="task">タスク</option>
-            <option value="memo">メモ</option>
+          <label for="type" class="block text-white-700 text-sm font-bold mb-2">種別 <span class="text-red-500">*</span></label>
+          <select name="type" id="type"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            <option value="">種別を選択してください</option>
+            @foreach(['電話','メール','会議','タスク','メモ'] as $t)
+              <option value="{{ $t }}" {{ old('type') === $t ? 'selected' : '' }}>{{ $t }}</option>
+            @endforeach
           </select>
         </div>
+
         <div class="mb-4">
-          <label for="title" class="block text-white-700 text-sm font-bold mb-2">タイトル:</label>
-          <input type="text" name="title" id="title" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+          <label for="title" class="block text-white-700 text-sm font-bold mb-2">タイトル <span class="text-red-500">*</span></label>
+          <input type="text" name="title" id="title" value="{{ old('title') }}"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
         </div>
+
         <div class="mb-4">
-          <label for="description" class="block text-white-700 text-sm font-bold mb-2">説明:</label>
-          <textarea name="description" id="description" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3"></textarea>
+          <label for="description" class="block text-white-700 text-sm font-bold mb-2">説明</label>
+          <textarea name="description" id="description" rows="3"
+            class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('description') }}</textarea>
         </div>
+
         <div class="mb-4">
-          <label for="date" class="block text-white-700 text-sm font-bold mb-2">見込み成約日:</label>
-          <input type="date" name="date" id="date" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+          <label for="date" class="block text-white-700 text-sm font-bold mb-2">活動日</label>
+          <input type="date" name="date" id="date" value="{{ old('date') }}"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
         </div>
+
         <div class="mb-4">
-          <label for="status" class="block text-white-700 text-sm font-bold mb-2">ステータス:</label>
-          <select name="status" id="status" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+          <label for="status" class="block text-white-700 text-sm font-bold mb-2">ステータス</label>
+          <select name="status" id="status"
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
             <option value="">ステータスを選択してください</option>
-            <option value="schedule">予定</option>
-            <option value="completion">完了</option>
-            <option value="cancel">キャンセル済み</option>
+            @foreach(['予定','完了','キャンセル済み'] as $s)
+              <option value="{{ $s }}" {{ old('status') === $s ? 'selected' : '' }}>{{ $s }}</option>
+            @endforeach
           </select>
         </div>
+
+        <div class="mb-4 flex items-center gap-2">
+          <input type="checkbox" name="phone_ng" id="phone_ng" value="1" {{ old('phone_ng') ? 'checked' : '' }}>
+          <label for="phone_ng" class="text-white-700 text-sm font-bold">電話NG</label>
+        </div>
+
+        <div class="mb-4">
+          <label for="last_sales_status" class="block text-white-700 text-sm font-bold mb-2">最終営業状況</label>
+          <textarea name="last_sales_status" id="last_sales_status" rows="3"
+            class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('last_sales_status') }}</textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="email_notes" class="block text-white-700 text-sm font-bold mb-2">メール備考</label>
+          <textarea name="email_notes" id="email_notes" rows="3"
+            class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('email_notes') }}</textarea>
+        </div>
+
+        <div class="mb-4">
+          <label for="call_notes" class="block text-white-700 text-sm font-bold mb-2">着電日報備考</label>
+          <textarea name="call_notes" id="call_notes" rows="3"
+            class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('call_notes') }}</textarea>
+        </div>
+
         <div class="flex items-center justify-between">
           <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
             作成
           </button>
-
           <a href="{{ route('activities.index') }}" class="text-blue-500 hover:underline">キャンセル</a>
         </div>
       </form>
-
+    </div>
 </x-layouts.app>
