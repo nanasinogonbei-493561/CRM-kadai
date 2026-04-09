@@ -4,18 +4,27 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Contact extends Model
+class Lead extends Model
 {
     protected $fillable = [
         'company_id',
         'user_id',
-        'first_name',
-        'last_name',
-        'position',
+        'company_name',
+        'contact_name',
         'email',
         'phone',
-        'mobile',
+        'phone_ng',
+        'rank',
+        'status',
+        'deal_status',
+        'last_sales_status',
+        'email_notes',
+        'call_notes',
         'notes',
+    ];
+
+    protected $casts = [
+        'phone_ng' => 'boolean',
     ];
 
     public function company()
@@ -26,15 +35,5 @@ class Contact extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function deals()
-    {
-        return $this->hasMany(Deal::class);
-    }
-
-    public function activities()
-    {
-        return $this->hasMany(Activity::class);
     }
 }

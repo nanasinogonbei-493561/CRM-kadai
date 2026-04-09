@@ -47,6 +47,26 @@ class User extends Authenticatable
         ];
     }
 
+    public function contacts()
+    {
+        return $this->hasMany(Contact::class);
+    }
+
+    public function deals()
+    {
+        return $this->hasMany(Deal::class);
+    }
+
+    public function activities()
+    {
+        return $this->hasMany(Activity::class);
+    }
+
+    public function leads()
+    {
+        return $this->hasMany(Lead::class);
+    }
+
     /**
      * Get the user's initials
      */

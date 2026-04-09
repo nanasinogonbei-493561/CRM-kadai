@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model
 {
-    //
     protected $fillable = [
         'company_id',
         'contact_id',
@@ -16,7 +15,16 @@ class Activity extends Model
         'title',
         'description',
         'date',
-        'status'
+        'status',
+        'phone_ng',
+        'last_sales_status',
+        'email_notes',
+        'call_notes',
+    ];
+
+    protected $casts = [
+        'phone_ng' => 'boolean',
+        'date' => 'date',
     ];
 
     public function company()
@@ -32,5 +40,10 @@ class Activity extends Model
     public function deal()
     {
         return $this->belongsTo(Deal::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }
