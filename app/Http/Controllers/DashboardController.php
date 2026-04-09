@@ -23,7 +23,7 @@ class DashboardController extends Controller
         }
 
         // リードランク別件数
-        $leadRankCounts = Lead::selectRaw('rank, count(*) as count')
+        $leadRankCounts = Lead::selectRaw('`rank`, count(*) as count')
             ->whereNotNull('rank')
             ->groupBy('rank')
             ->orderBy('rank')
