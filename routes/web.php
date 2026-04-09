@@ -14,7 +14,7 @@ Route::get('/', function () {
         : redirect()->route('login');
 })->name('home');
 
-Route::view('dashboard', 'dashboard')
+Route::get('dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
