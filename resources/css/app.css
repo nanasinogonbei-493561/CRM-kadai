@@ -3,6 +3,7 @@
 
 @source '../views';
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../vendor/livewire/flux/stubs';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -32,6 +33,13 @@
     ::file-selector-button {
         border-color: var(--color-gray-200, currentColor);
     }
+
+    /* Flux グリッドレイアウト: サイドバー横にメインコンテンツを配置 */
+    [data-flux-sidebar] { grid-area: sidebar; }
+    [data-flux-main]    { grid-area: main; }
+    [data-flux-header]  { grid-area: header; }
+    [data-flux-aside]   { grid-area: aside; }
+    [data-flux-footer]  { grid-area: footer; }
 }
 
 @layer components {
@@ -79,6 +87,20 @@
         @apply overflow-y-scroll gap-3;
     }
     .Deal-table-layout {
+        @apply w-full table-fixed rounded-2xl;
+    }
+
+    /* リード一覧のレイアウト */
+    .Lead-layout {
+        @apply flex h-full w-full flex-col flex-1 gap-5 rounded-xl p-5;
+    }
+    .Lead-searchForm {
+        @apply flex w-full flex-initial flex-col;
+    }
+    .Lead-table {
+        @apply overflow-y-scroll gap-3;
+    }
+    .Lead-table-layout {
         @apply w-full table-fixed rounded-2xl;
     }
 
