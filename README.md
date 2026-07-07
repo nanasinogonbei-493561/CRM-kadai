@@ -67,6 +67,8 @@ Laravelの公式ドキュメントを検索して、読んで実装しました�
 Conoha VPSからデプロイしました。
 はじめにアップデートした後、PHP-FPMとcomposerとNginxをインストールし、DNSを設定した後、CerbotでSSL化しました。
 その後、ログイン画面が出なかったので、npm run devしてなかったのが原因だと突き止め、バグ直しました。
+SSL化したCRM
+https://crm-kadai.top
 
 ### その他について
 学習したものをZennのscrapにて記事にしました。
