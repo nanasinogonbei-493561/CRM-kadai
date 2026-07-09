@@ -15,7 +15,7 @@
  - 2026/2/8現在
    1. 会社、連絡先、商談、活動の4種のCRUDとフィルタリング検索、APIの使用等を実装済み。
 
-### PHHでのCRUDの書き方について。
+### PHPでのCRUDの書き方について。
 変数 = 処理
 viewに返す。
 
@@ -67,8 +67,11 @@ Laravelの公式ドキュメントを検索して、読んで実装しました�
 Conoha VPSからデプロイしました。
 はじめにアップデートした後、PHP-FPMとcomposerとNginxをインストールし、DNSを設定した後、CerbotでSSL化しました。
 その後、ログイン画面が出なかったので、npm run devしてなかったのが原因だと突き止め、バグ直しました。
+
 SSL化したCRM
 https://crm-kadai.top
+Email Adress: test@example.com
+Password: password
 
 ### その他について
 学習したものをZennのscrapにて記事にしました。
