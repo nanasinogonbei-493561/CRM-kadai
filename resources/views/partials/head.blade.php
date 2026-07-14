@@ -11,4 +11,12 @@
 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
+
+{{-- 既定はライトテーマ。初回アクセス時のみ light を設定し、
+     以降は設定画面（Light / Dark / System）でのユーザーの選択を尊重する。 --}}
+<script>
+    if (! localStorage.getItem('flux.appearance')) {
+        localStorage.setItem('flux.appearance', 'light');
+    }
+</script>
 @fluxAppearance

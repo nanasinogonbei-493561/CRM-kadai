@@ -25,13 +25,26 @@
 }
 
 @layer base {
+    /* ライトを既定とし、.dark が付いたときだけダークに切り替える。
+       color-scheme を宣言することで、ネイティブのフォーム部品・
+       チェックボックス・スクロールバーもテーマに追従する。 */
+    :root {
+        color-scheme: light;
+        --ui-border: var(--color-zinc-200);
+    }
+
+    .dark {
+        color-scheme: dark;
+        --ui-border: var(--color-zinc-700);
+    }
+
     /* 基本スタイル */
     *,
     ::after,
     ::before,
     ::backdrop,
     ::file-selector-button {
-        border-color: var(--color-gray-200, currentColor);
+        border-color: var(--ui-border, currentColor);
     }
 
     /* Flux グリッドレイアウト: サイドバー横にメインコンテンツを配置 */
@@ -47,6 +60,29 @@
     /* 新規作成 */
     .create {
         @apply text-blue-500 gap-10 hover:underline dark:text-sky-400;
+    }
+
+    /* --- フォーム（作成・編集画面で共通利用） --- */
+    .form-label {
+        @apply block mb-2 text-sm font-bold text-zinc-700 dark:text-zinc-200;
+    }
+    .form-input {
+        @apply w-full rounded border border-zinc-300 bg-white px-3 py-2 leading-tight text-zinc-900 shadow-sm
+               placeholder:text-zinc-400
+               focus:border-zinc-500 focus:ring-2 focus:ring-zinc-500/20 focus:outline-none
+               dark:border-zinc-600 dark:bg-zinc-800 dark:text-zinc-100 dark:placeholder:text-zinc-500;
+    }
+
+    /* --- 詳細画面（show）のカード --- */
+    .detail-card {
+        @apply mb-4 rounded-xl border border-zinc-200 bg-white px-8 pt-6 pb-8 shadow-sm
+               dark:border-zinc-700 dark:bg-zinc-900;
+    }
+    .detail-label {
+        @apply block mb-2 text-sm font-bold text-zinc-500 dark:text-zinc-400;
+    }
+    .detail-value {
+        @apply text-zinc-900 dark:text-zinc-100;
     }
     /* 会社一覧のレイアウト */
     .Company-layout {

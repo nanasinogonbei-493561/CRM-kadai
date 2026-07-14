@@ -1,71 +1,71 @@
 <x-layouts.app :title="__('Dashboard')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
       <h2>リード詳細</h2>
-      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="detail-card">
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">会社名:</label>
-          <p class="text-gray-900">{{ $lead->company_name }}</p>
+          <label class="detail-label">会社名:</label>
+          <p class="detail-value">{{ $lead->company_name }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">担当者名:</label>
-          <p class="text-gray-900">{{ $lead->contact_name }}</p>
+          <label class="detail-label">担当者名:</label>
+          <p class="detail-value">{{ $lead->contact_name }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">メールアドレス:</label>
-          <p class="text-gray-900">{{ $lead->email }}</p>
+          <label class="detail-label">メールアドレス:</label>
+          <p class="detail-value">{{ $lead->email }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">電話番号:</label>
-          <p class="text-gray-900">{{ $lead->phone }}</p>
+          <label class="detail-label">電話番号:</label>
+          <p class="detail-value">{{ $lead->phone }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">電話NG:</label>
-          <p class="text-gray-900">{{ $lead->phone_ng ? 'はい' : 'いいえ' }}</p>
+          <label class="detail-label">電話NG:</label>
+          <p class="detail-value">{{ $lead->phone_ng ? 'はい' : 'いいえ' }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">ランク:</label>
-          <p class="text-gray-900">{{ $lead->rank }}</p>
+          <label class="detail-label">ランク:</label>
+          <p class="detail-value">{{ $lead->rank }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">状況:</label>
-          <p class="text-gray-900">{{ $lead->status }}</p>
+          <label class="detail-label">状況:</label>
+          <p class="detail-value">{{ $lead->status }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">商談後ステータス:</label>
-          <p class="text-gray-900">{{ $lead->deal_status }}</p>
+          <label class="detail-label">商談後ステータス:</label>
+          <p class="detail-value">{{ $lead->deal_status }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">最終営業状況:</label>
-          <p class="text-gray-900">{{ $lead->last_sales_status }}</p>
+          <label class="detail-label">最終営業状況:</label>
+          <p class="detail-value">{{ $lead->last_sales_status }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">メール備考:</label>
-          <p class="text-gray-900">{{ $lead->email_notes }}</p>
+          <label class="detail-label">メール備考:</label>
+          <p class="detail-value">{{ $lead->email_notes }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">着電日報備考:</label>
-          <p class="text-gray-900">{{ $lead->call_notes }}</p>
+          <label class="detail-label">着電日報備考:</label>
+          <p class="detail-value">{{ $lead->call_notes }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">備考:</label>
-          <p class="text-gray-900">{{ $lead->notes }}</p>
+          <label class="detail-label">備考:</label>
+          <p class="detail-value">{{ $lead->notes }}</p>
         </div>
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">登録者:</label>
-          <p class="text-gray-900">{{ optional($lead->user)->name }}</p>
+          <label class="detail-label">登録者:</label>
+          <p class="detail-value">{{ optional($lead->user)->name }}</p>
         </div>
 
         <div class="flex items-center gap-4 mt-6">

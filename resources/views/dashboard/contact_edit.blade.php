@@ -11,8 +11,8 @@
         @method('PUT')
         <div class="mb-4">
           <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-          <label for="company_id" class="block text-white-700 text-sm font-bold mb-2">会社:</label>
-          <select name="company_id" id="company_id" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+          <label for="company_id" class="form-label">会社:</label>
+          <select name="company_id" id="company_id" class="form-input" required>
             <option value="">会社を選択してください</option>
             @foreach($companies as $company)
               <option value="{{ $company->id }}" @selected($company->id == $contact->company_id)>{{ $company->name }}</option>
@@ -21,38 +21,38 @@
         </div>
 
         <div class="mb-4">
-          <label for="first_name" class="block text-white-700 text-sm font-bold mb-2">苗字:</label>
-          <input type="text" name="first_name" id="first_name" value="{{ old('first_name', $contact->first_name) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label for="first_name" class="form-label">苗字:</label>
+          <input type="text" name="first_name" id="first_name" value="{{ old('first_name', $contact->first_name) }}" class="form-input">
           <p>{{ $contact->first_name }}</p>
         </div>
         <div class="mb-4">
-          <label for="last_name" class="block text-white-700 text-sm font-bold mb-2">名前:</label>
-          <input type="text" name="last_name" id="last_name" value="{{ old('last_name', $contact->last_name) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label for="last_name" class="form-label">名前:</label>
+          <input type="text" name="last_name" id="last_name" value="{{ old('last_name', $contact->last_name) }}" class="form-input">
           <p>{{ $contact->last_name }}</p>
         </div>
         <div class="mb-4">
-          <label for="position" class="block text-white-700 text-sm font-bold mb-2">役職:</label>
-          <input type="text" name="position" id="position" value="{{ old('position', $contact->position) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label for="position" class="form-label">役職:</label>
+          <input type="text" name="position" id="position" value="{{ old('position', $contact->position) }}" class="form-input">
           <p>{{ $contact->position }}</p>
         </div>
         <div class="mb-4">
-          <label for="email" class="block text-white-700 text-sm font-bold mb-2">メールアドレス:</label>
-          <input type="email" name="email" id="email" value="{{ old('email', $contact->email) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label for="email" class="form-label">メールアドレス:</label>
+          <input type="email" name="email" id="email" value="{{ old('email', $contact->email) }}" class="form-input">
           <p>{{ $contact->email }}</p>
         </div>
         <div class="mb-4">
-          <label for="phone" class="block text-white-700 text-sm font-bold mb-2">電話番号:</label>
-          <input type="text" name="phone" id="phone" value="{{ old('phone', $contact->phone) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label for="phone" class="form-label">電話番号:</label>
+          <input type="text" name="phone" id="phone" value="{{ old('phone', $contact->phone) }}" class="form-input">
           <p>{{ $contact->phone }}</p>
         </div>
         <div class="mb-4">
-          <label for="mobile" class="block text-white-700 text-sm font-bold mb-2">携帯電話番号:</label>
-          <input type="text" name="mobile" id="mobile" value="{{ old('mobile', $contact->mobile) }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+          <label for="mobile" class="form-label">携帯電話番号:</label>
+          <input type="text" name="mobile" id="mobile" value="{{ old('mobile', $contact->mobile) }}" class="form-input">
           <p>{{ $contact->mobile }}</p>
         </div>
         <div class="mb-4">
-          <label for="notes" class="block text-white-700 text-sm font-bold mb-2">メモ:</label>
-          <textarea name="notes" id="notes" rows="4" class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('notes', $contact->notes) }}</textarea>
+          <label for="notes" class="form-label">メモ:</label>
+          <textarea name="notes" id="notes" rows="4" class="form-input">{{ old('notes', $contact->notes) }}</textarea>
           <p>{{ $contact->notes }}</p>
         </div>
         <div class="flex items-center justify-between">

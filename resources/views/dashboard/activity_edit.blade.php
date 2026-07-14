@@ -65,9 +65,9 @@
         @method('PUT')
 
         <div class="mb-4">
-          <label for="company_id" class="block text-white-700 text-sm font-bold mb-2">会社 <span class="text-red-500">*</span></label>
+          <label for="company_id" class="form-label">会社 <span class="text-red-500">*</span></label>
           <select name="company_id" id="company_id"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            class="form-input" required>
             <option value="">会社を選択してください</option>
             @foreach($companies as $company)
               <option value="{{ $company->id }}" @selected($company->id == $activity->company_id)>{{ $company->name }}</option>
@@ -76,27 +76,27 @@
         </div>
 
         <div class="mb-4">
-          <label for="contact_id" class="block text-white-700 text-sm font-bold mb-2">連絡先</label>
+          <label for="contact_id" class="form-label">連絡先</label>
           <select name="contact_id" id="contact_id"
             data-current-contact-id="{{ old('contact_id', $activity->contact_id) }}"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+            class="form-input">
             <option value="">連絡先を選択してください</option>
           </select>
         </div>
 
         <div class="mb-4">
-          <label for="deal_id" class="block text-white-700 text-sm font-bold mb-2">商談</label>
+          <label for="deal_id" class="form-label">商談</label>
           <select name="deal_id" id="deal_id"
             data-current-deal-id="{{ old('deal_id', $activity->deal_id) }}"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+            class="form-input">
             <option value="">商談を選択してください</option>
           </select>
         </div>
 
         <div class="mb-4">
-          <label for="type" class="block text-white-700 text-sm font-bold mb-2">種別 <span class="text-red-500">*</span></label>
+          <label for="type" class="form-label">種別 <span class="text-red-500">*</span></label>
           <select name="type" id="type"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            class="form-input" required>
             <option value="">種別を選択してください</option>
             @foreach(['電話','メール','会議','タスク','メモ'] as $t)
               <option value="{{ $t }}" @selected(old('type', $activity->type) === $t)>{{ $t }}</option>
@@ -105,27 +105,27 @@
         </div>
 
         <div class="mb-4">
-          <label for="title" class="block text-white-700 text-sm font-bold mb-2">タイトル <span class="text-red-500">*</span></label>
+          <label for="title" class="form-label">タイトル <span class="text-red-500">*</span></label>
           <input type="text" name="title" id="title" value="{{ old('title', $activity->title) }}"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            class="form-input" required>
         </div>
 
         <div class="mb-4">
-          <label for="description" class="block text-white-700 text-sm font-bold mb-2">説明</label>
+          <label for="description" class="form-label">説明</label>
           <textarea name="description" id="description" rows="3"
-            class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('description', $activity->description) }}</textarea>
+            class="form-input">{{ old('description', $activity->description) }}</textarea>
         </div>
 
         <div class="mb-4">
-          <label for="date" class="block text-white-700 text-sm font-bold mb-2">活動日</label>
+          <label for="date" class="form-label">活動日</label>
           <input type="date" name="date" id="date" value="{{ old('date', $activity->date) }}"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+            class="form-input">
         </div>
 
         <div class="mb-4">
-          <label for="status" class="block text-white-700 text-sm font-bold mb-2">ステータス</label>
+          <label for="status" class="form-label">ステータス</label>
           <select name="status" id="status"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+            class="form-input">
             <option value="">ステータスを選択してください</option>
             @foreach(['予定','完了','キャンセル済み'] as $s)
               <option value="{{ $s }}" @selected(old('status', $activity->status) === $s)>{{ $s }}</option>
@@ -136,25 +136,25 @@
         <div class="mb-4 flex items-center gap-2">
           <input type="checkbox" name="phone_ng" id="phone_ng" value="1"
             {{ old('phone_ng', $activity->phone_ng) ? 'checked' : '' }}>
-          <label for="phone_ng" class="text-white-700 text-sm font-bold">電話NG</label>
+          <label for="phone_ng" class="form-label">電話NG</label>
         </div>
 
         <div class="mb-4">
-          <label for="last_sales_status" class="block text-white-700 text-sm font-bold mb-2">最終営業状況</label>
+          <label for="last_sales_status" class="form-label">最終営業状況</label>
           <textarea name="last_sales_status" id="last_sales_status" rows="3"
-            class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('last_sales_status', $activity->last_sales_status) }}</textarea>
+            class="form-input">{{ old('last_sales_status', $activity->last_sales_status) }}</textarea>
         </div>
 
         <div class="mb-4">
-          <label for="email_notes" class="block text-white-700 text-sm font-bold mb-2">メール備考</label>
+          <label for="email_notes" class="form-label">メール備考</label>
           <textarea name="email_notes" id="email_notes" rows="3"
-            class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('email_notes', $activity->email_notes) }}</textarea>
+            class="form-input">{{ old('email_notes', $activity->email_notes) }}</textarea>
         </div>
 
         <div class="mb-4">
-          <label for="call_notes" class="block text-white-700 text-sm font-bold mb-2">着電日報備考</label>
+          <label for="call_notes" class="form-label">着電日報備考</label>
           <textarea name="call_notes" id="call_notes" rows="3"
-            class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('call_notes', $activity->call_notes) }}</textarea>
+            class="form-input">{{ old('call_notes', $activity->call_notes) }}</textarea>
         </div>
 
         <div class="flex items-center justify-between">

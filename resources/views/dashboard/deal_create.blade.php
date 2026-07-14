@@ -35,15 +35,15 @@
         @csrf
 
         <div class="mb-4">
-          <label for="title" class="block text-white-700 text-sm font-bold mb-2">タイトル <span class="text-red-500">*</span></label>
+          <label for="title" class="form-label">タイトル <span class="text-red-500">*</span></label>
           <input type="text" name="title" id="title" value="{{ old('title') }}"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            class="form-input" required>
         </div>
 
         <div class="mb-4">
-          <label for="company_id" class="block text-white-700 text-sm font-bold mb-2">会社 <span class="text-red-500">*</span></label>
+          <label for="company_id" class="form-label">会社 <span class="text-red-500">*</span></label>
           <select name="company_id" id="company_id"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" required>
+            class="form-input" required>
             <option value="">会社を選択してください</option>
             @foreach($companies as $company)
               <option value="{{ $company->id }}">{{ $company->name }}</option>
@@ -52,17 +52,17 @@
         </div>
 
         <div class="mb-4">
-          <label for="contact_id" class="block text-white-700 text-sm font-bold mb-2">連絡先</label>
+          <label for="contact_id" class="form-label">連絡先</label>
           <select name="contact_id" id="contact_id"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+            class="form-input">
             <option value="">連絡先を選択してください</option>
           </select>
         </div>
 
         <div class="mb-4">
-          <label for="status" class="block text-white-700 text-sm font-bold mb-2">商談前ステータス</label>
+          <label for="status" class="form-label">商談前ステータス</label>
           <select name="status" id="status"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+            class="form-input">
             <option value="">選択してください</option>
             @foreach(['商談中','成約','検討','断り済','失注'] as $s)
               <option value="{{ $s }}" {{ old('status') === $s ? 'selected' : '' }}>{{ $s }}</option>
@@ -71,9 +71,9 @@
         </div>
 
         <div class="mb-4">
-          <label for="deal_status" class="block text-white-700 text-sm font-bold mb-2">商談後ステータス</label>
+          <label for="deal_status" class="form-label">商談後ステータス</label>
           <select name="deal_status" id="deal_status"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+            class="form-input">
             <option value="">選択してください</option>
             @foreach(['成約','検討','商談設定中'] as $ds)
               <option value="{{ $ds }}" {{ old('deal_status') === $ds ? 'selected' : '' }}>{{ $ds }}</option>
@@ -82,27 +82,27 @@
         </div>
 
         <div class="mb-4">
-          <label for="date" class="block text-white-700 text-sm font-bold mb-2">商談日</label>
+          <label for="date" class="form-label">商談日</label>
           <input type="date" name="date" id="date" value="{{ old('date') }}"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline">
+            class="form-input">
         </div>
 
         <div class="mb-4">
-          <label for="probability" class="block text-white-700 text-sm font-bold mb-2">確度(%):</label>
+          <label for="probability" class="form-label">確度(%):</label>
           <input type="number" name="probability" id="probability" value="{{ old('probability') }}"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-white-700 leading-tight focus:outline-none focus:shadow-outline" min="0" max="100">
+            class="form-input" min="0" max="100">
         </div>
 
         <div class="mb-4">
-          <label for="description" class="block text-white-700 text-sm font-bold mb-2">説明</label>
+          <label for="description" class="form-label">説明</label>
           <textarea name="description" id="description" rows="4"
-            class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('description') }}</textarea>
+            class="form-input">{{ old('description') }}</textarea>
         </div>
 
         <div class="mb-4">
-          <label for="notes" class="block text-white-700 text-sm font-bold mb-2">備考</label>
+          <label for="notes" class="form-label">備考</label>
           <textarea name="notes" id="notes" rows="4"
-            class="shadow appearance-none border rounded w-full py-2 px-3">{{ old('notes') }}</textarea>
+            class="form-input">{{ old('notes') }}</textarea>
         </div>
 
         <div class="flex items-center justify-between">

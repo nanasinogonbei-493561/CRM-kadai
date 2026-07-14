@@ -1,47 +1,47 @@
 <x-layouts.app :title="__('Dashboard')">
     <div class="flex h-full w-full flex-1 flex-col gap-4 rounded-xl">
       <h2>商談詳細ページ</h2>
-      <div class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+      <div class="detail-card">
 
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">タイトル:</label>
-          <p class="text-gray-900">{{ $deal->title }}</p>
+          <label class="detail-label">タイトル:</label>
+          <p class="detail-value">{{ $deal->title }}</p>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">会社名:</label>
-          <p class="text-gray-900">{{ optional($deal->company)->name }}</p>
+          <label class="detail-label">会社名:</label>
+          <p class="detail-value">{{ optional($deal->company)->name }}</p>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">連絡先:</label>
-          <p class="text-gray-900">{{ optional($deal->contact)->first_name }} {{ optional($deal->contact)->last_name }}</p>
+          <label class="detail-label">連絡先:</label>
+          <p class="detail-value">{{ optional($deal->contact)->first_name }} {{ optional($deal->contact)->last_name }}</p>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">商談前ステータス:</label>
-          <p class="text-gray-900">{{ $deal->status }}</p>
+          <label class="detail-label">商談前ステータス:</label>
+          <p class="detail-value">{{ $deal->status }}</p>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">商談後ステータス:</label>
-          <p class="text-gray-900">{{ $deal->deal_status }}</p>
+          <label class="detail-label">商談後ステータス:</label>
+          <p class="detail-value">{{ $deal->deal_status }}</p>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">担当ユーザー:</label>
-          <p class="text-gray-900">{{ optional($deal->user)->name }}</p>
+          <label class="detail-label">担当ユーザー:</label>
+          <p class="detail-value">{{ optional($deal->user)->name }}</p>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">商談日:</label>
-          <p class="text-gray-900">{{ $deal->date }}</p>
+          <label class="detail-label">商談日:</label>
+          <p class="detail-value">{{ $deal->date }}</p>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">確度(%):</label>
-          <p class="text-gray-900">{{ $deal->probability }}</p>
+          <label class="detail-label">確度(%):</label>
+          <p class="detail-value">{{ $deal->probability }}</p>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">説明:</label>
-          <p class="text-gray-900">{{ $deal->description }}</p>
+          <label class="detail-label">説明:</label>
+          <p class="detail-value">{{ $deal->description }}</p>
         </div>
         <div class="mb-4">
-          <label class="block text-gray-700 text-sm font-bold mb-2">備考:</label>
-          <p class="text-gray-900">{{ $deal->notes }}</p>
+          <label class="detail-label">備考:</label>
+          <p class="detail-value">{{ $deal->notes }}</p>
         </div>
 
         <div class="flex items-center gap-4 mt-6">
