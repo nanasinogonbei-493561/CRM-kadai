@@ -16,7 +16,7 @@
 
 ## 🚀 デモ環境
 
-**https://crm-kadai.top**（ConoHa VPS 上で稼働中 / Let's Encrypt による HTTPS 化済み）
+**https://crm-kadai.top** (ConoHa VPS 上で稼働中 / Let's Encrypt による HTTPS 化済み)
 
 | 項目 | 値 |
 | --- | --- |
