@@ -23,3 +23,9 @@ yarn-error.log
 /.zed
 /storage/debugbar
 /docs
+terraform.tfstate
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.tfvars.json
